@@ -22,7 +22,8 @@ const state = {
 async function initTrollfield(evt) {
     console.log("HERE WE GO");
 
-    state.posts = await fetch(`${window.wpData.rest_url}/wp/v2/posts`)
+    state.posts = await fetch(`https://sternapau.de/wp-json/wp/v2/posts/`)
+    //state.posts = await fetch(`${window.wpData.rest_url}/wp/v2/posts`)
         .then(d => d.json())
         .then(d => d);
 
@@ -57,6 +58,9 @@ function init() {
 
     // Geometries for every post
     state.posts.forEach((item, key) => {
+
+        console.log(item)
+
 	const mesh = new THREE.Mesh( geometry, material );
         let v1 = new THREE.Vector3(0.4, key + 0.0035);
         let v2 = new THREE.Vector3(304, key + 0.003);
