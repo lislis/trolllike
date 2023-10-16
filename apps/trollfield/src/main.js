@@ -6,6 +6,8 @@ import PageTransition from 'vue3-page-transition'
 
 import 'aframe/dist/aframe-master.js';
 
+import 'aframe-extras/dist/aframe-extras.js';
+
 //import { TroisJSVuePlugin } from 'troisjs';
 
 //import './assets/main.css'
