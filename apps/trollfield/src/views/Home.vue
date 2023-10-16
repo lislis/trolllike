@@ -1,6 +1,14 @@
 <template>
     <div>
-        <h2>Home</h2>
+        <a-scene>
+            <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+            <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+            <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+            <a-sky color="#ECECEC"></a-sky>
+            <a-entity hello-world></a-entity>
+        </a-scene>
+
         <ul v-if="store.allPosts.length != 0">
             <li v-for="post in store.allPosts">
                 <router-link :to="post.slug" v-html="post.title.rendered"></router-link>
@@ -10,33 +18,15 @@
             Loading
         </div>
 
-        <Renderer ref="renderer" resize orbit-ctrl pointer v-if="store.allPosts.length != 0">
-            <Camera :position="{ y: 8, z: 18 }" />
-            <Scene ref="scene" background="#cccccc">
-                <DirectionalLight color="#ffffff" intensity="3"
-                                  :position="{x: 1, y: 1, z: 1}" />
-                <DirectionalLight color="#002288" intensity="3"
-                                  :position="{x: -1, y: -1, z: -1}" />
-                <AmbientLight color="#555555" />
 
-                <Box v-for="(val, key) in store.allPosts" :key="key" :ref="`mesh-${key}`"
-                     :position="position(key)"
-                     @pointerEnter="onPointerOver"
-                     @pointerLeave="onPointerOver"
-                     @click="onPointerClick(val)">
-                    <PhongMaterial color="#667788" />
-                </Box>
-
-            </Scene>
-
-        </Renderer>
     </div>
 </template>
 
 <script>
  import { usePostsStore } from '@/stores/posts'
- import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
-3
+ import '@/PostAvatar.js';
+
+
  export default {
      name: "TrollfieldHomeView",
      components: { },

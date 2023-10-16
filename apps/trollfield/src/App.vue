@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { usePostsStore } from "@/stores/posts.js";
+ import { usePostsStore } from "@/stores/posts.js";
+
 
  export default {
      name: "TrollfieldApp",
@@ -27,8 +28,8 @@ import { usePostsStore } from "@/stores/posts.js";
      async created() {
          // this.isLoading = true;
         // debugger
-        //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
-         await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
+        await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
+         //await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
              .then(d => d.json())
              .then(d => {
                  console.log(d);

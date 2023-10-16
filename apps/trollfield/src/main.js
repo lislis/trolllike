@@ -3,7 +3,10 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/index'
 import PageTransition from 'vue3-page-transition'
-import { TroisJSVuePlugin } from 'troisjs';
+
+import 'aframe/dist/aframe-master.js';
+
+//import { TroisJSVuePlugin } from 'troisjs';
 
 //import './assets/main.css'
 
@@ -17,4 +20,4 @@ app.mount('#trollfield-app')
 
 app.use(PageTransition)
 
-app.use(TroisJSVuePlugin)
+//app.use(TroisJSVuePlugin)

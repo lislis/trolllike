@@ -10,7 +10,8 @@ function troll_scripts() {
                            array (),
                            false, false);
         wp_enqueue_script('threejs');
-*/
+         */
+
         wp_register_script('trollfield',
                            get_stylesheet_directory_uri() .'/apps/trollfield/dist/index.js',
                            array (),
