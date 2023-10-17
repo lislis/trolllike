@@ -13,4 +13,6 @@ const router = createRouter({
   routes, // short for `routes: routes`
 });
 
+window.vueRouter = router;
+
 export default router;

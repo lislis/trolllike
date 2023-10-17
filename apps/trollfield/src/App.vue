@@ -1,5 +1,7 @@
 <template>
     <div>
+        <TheField />
+
         <router-view v-slot='{ Component }'>
             <PageTransition name='zoom' appear>
                 <component :is='Component' />
@@ -9,12 +11,13 @@
 </template>
 
 <script>
+ import TheField from "@/components/TheField.vue";
  import { usePostsStore } from "@/stores/posts.js";
 
 
  export default {
      name: "TrollfieldApp",
-     components: { },
+     components: { TheField },
      setup() {
          const store = usePostsStore();
          return { store }
@@ -27,16 +30,16 @@
      },
      async created() {
          // this.isLoading = true;
-        // debugger
-        await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
+         // debugger
+         await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
          //await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
              .then(d => d.json())
              .then(d => {
                  console.log(d);
-             //    this.isLoading = false;
+                 //    this.isLoading = false;
                  this.store.add(d);
              }).catch(e => {
-           //      this.isLoading = false;
+                 //      this.isLoading = false;
                  console.log("Error", e);
              });
 
