@@ -1,4 +1,4 @@
-<template>
+we<template>
     <a-scene v-if="store.allPosts.length != 0">
 
         <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane> -->

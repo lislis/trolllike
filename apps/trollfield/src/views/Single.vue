@@ -1,5 +1,5 @@
 <template>
-    <div class="single-view">
+    <div class="single-view" v-if="item.title">
         <router-link to="/">Close</router-link>
         <h3 v-html="item.title.rendered"></h3>
         <div v-html="item.content.rendered"></div>
@@ -36,27 +36,3 @@
      }
  }
 </script>
-<style scoped>
- * {
-     box-sizing: border-box;
- }
-
- .single-view {
-     position: absolute;
-     z-index: 99;
-     width: 50vw;
-     padding: 1vw;
-     background: white;
-     top: 0;
-     bottom: 0;
-     right: 0;
-     left: 0;
-     margin: auto;
-     height: 40vh;
-     overflow: scroll;
- }
- .single-view img {
-     width: 100%;
-     height: auto;
- }
-</style>

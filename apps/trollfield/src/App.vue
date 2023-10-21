@@ -31,13 +31,28 @@
      async created() {
          // this.isLoading = true;
          // debugger
-         await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
-         //await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
+         //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
+         await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
              .then(d => d.json())
              .then(d => {
                  console.log(d);
                  //    this.isLoading = false;
-                 this.store.add(d);
+                 this.store.addPosts(d);
+             }).catch(e => {
+                 //      this.isLoading = false;
+                 console.log("Error", e);
+             });
+
+         await fetch(`${window.wpData.rest_url}/trolllike-theme/v1/tags`)
+             .then(d => d.json())
+             .then(d => {
+                 //console.log(d);
+                 let dat = d;
+                 // filter unique
+                 let temp = [];
+                 dat.forEach()
+
+                 this.store.addTags(Array.from(temp));
              }).catch(e => {
                  //      this.isLoading = false;
                  console.log("Error", e);

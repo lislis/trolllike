@@ -31,6 +31,34 @@ function troll_scripts() {
         wp_enqueue_script('trollfield');
 
         wp_enqueue_style( 'trolllike-style', get_stylesheet_uri(), array(), "0.0.1" );
-        wp_enqueue_style( 'trolllike-app-style', get_stylesheet_directory_uri() . "/app/trollfield/dist/assets/index.css", array(), "0.0.1" );
+        wp_enqueue_style( 'trolllike-app-style', get_stylesheet_directory_uri() . "/app/trollfield/dist/assets/index.css", array('troll_style'), "0.0.1" );
     }
+}
+
+
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'trolllike-theme/v1', '/tags/', array(
+        'methods' => 'GET',
+        'callback' => 'troll_get_tags',
+        'permissions_callback' => __return_true()
+    ) );
+} );
+
+
+function troll_get_tags($data) {
+
+    $cat = get_category(get_option('main_filter_cat'));
+
+    $posts = get_posts(array('post_type' => 'post',
+                             'category' => $cat->ID,
+                             'numberposts' => 100));
+
+    $tags = array();
+
+    foreach ($posts as $post) {
+        $t = wp_get_post_tags($post->ID);
+        $tags = array_merge($tags, $t);
+    }
+
+    return $tags;
 }

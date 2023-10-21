@@ -9,3 +9,26 @@ License:      GNU General Public License v2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  trolllike
 */
+
+* {
+  box-sizing: border-box;
+}
+
+.single-view {
+  position: absolute;
+  z-index: 99;
+  width: 50vw;
+  padding: 1vw;
+  background: white;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 40vh;
+  overflow: scroll;
+}
+.single-view img {
+  width: 100%;
+  height: auto;
+}
