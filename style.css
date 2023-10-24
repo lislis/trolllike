@@ -89,6 +89,9 @@ Text Domain:  trolllike
   margin: 1em 1em 0 0;
   cursor: pointer;
 }
+.filter-tag.is-current {
+  background-color: blue;
+}
 
 .filter-icon {
   display: block;

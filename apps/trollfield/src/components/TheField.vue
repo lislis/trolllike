@@ -29,7 +29,15 @@ we<template>
         <a-light color="#ddf" position="3 10 -10" distance="50" intensity="0.4" type="point"></a-light>
 
 
-        <a-box v-for="(post, i) in store.allPosts" :post-url="post.slug"  cursor-listener  :position="`${i * 0.5} 0.5 ${ i * -1}`" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-entity  v-for="(post, i) in store.getPostsByCurrentFilter"
+                   :post-url="post.slug" cursor-listener
+                   geometry="primitive: box; width: 1.5; height: 1.3; depth: 0.2"
+                   :position="`${i * 1.5} 0.5 ${ i * -1}`" rotation="0 45 0"
+                   color="#4CC3D9">
+            <a-text :value="post.title.rendered"
+            position="-0.65 0 0.1"></a-text>
+        </a-entity>
+
 
     </a-scene>
     <div v-else>
@@ -61,5 +69,10 @@ we<template>
          const store = usePostsStore();
          return { store }
      },
+     methods: {
+         color() {
+
+         }
+     }
  }
 </script>

@@ -5,6 +5,7 @@ export const usePostsStore = defineStore('posts', {
         return {
             posts: [],
             tags: [],
+            currentFilter: null
         };
     },
     getters: {
@@ -13,6 +14,13 @@ export const usePostsStore = defineStore('posts', {
         },
         getPostBySlug(state) {
             return (slug) => state.posts.find(x => x.slug === slug);
+        },
+        getPostsByCurrentFilter(state) {
+            if (state.currentFilter == null) {
+                return state.posts;
+            } else {
+                return state.posts.filter(x => x.tags.includes(state.currentFilter));
+            }
         },
         allTags(state) {
             return state.tags;
@@ -34,6 +42,9 @@ export const usePostsStore = defineStore('posts', {
         addTags(more) {
             let all = this.tags.concat(more);
             this.tags = all;
+        },
+        selectFilter(filter) {
+            this.currentFilter = filter;
         }
     },
 });
