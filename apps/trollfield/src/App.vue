@@ -1,5 +1,7 @@
 <template>
     <div>
+        <TheFilter />
+
         <TheField />
 
         <router-view v-slot='{ Component }'>
@@ -11,13 +13,14 @@
 </template>
 
 <script>
+ import TheFilter from "@/components/TheFilter.vue";
  import TheField from "@/components/TheField.vue";
  import { usePostsStore } from "@/stores/posts.js";
 
 
  export default {
      name: "TrollfieldApp",
-     components: { TheField },
+     components: { TheField, TheFilter },
      setup() {
          const store = usePostsStore();
          return { store }
@@ -30,31 +33,33 @@
      },
      async created() {
          // this.isLoading = true;
-         // debugger
+
          //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
          await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
              .then(d => d.json())
              .then(d => {
-                 console.log(d);
-                 //    this.isLoading = false;
+                 //console.log(d);
                  this.store.addPosts(d);
              }).catch(e => {
-                 //      this.isLoading = false;
                  console.log("Error", e);
              });
 
          await fetch(`${window.wpData.rest_url}/trolllike-theme/v1/tags`)
              .then(d => d.json())
              .then(d => {
-                 //console.log(d);
                  let dat = d;
                  // filter unique
                  let temp = [];
-                 dat.forEach()
+                 let ids = []
+                 dat.forEach(x => {
+                     if (!ids.includes(x.term_id)) {
+                         temp.push(x);
+                         ids.push(x.term_id);
+                     }
+                 });
 
                  this.store.addTags(Array.from(temp));
              }).catch(e => {
-                 //      this.isLoading = false;
                  console.log("Error", e);
              });
 

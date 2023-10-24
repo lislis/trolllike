@@ -32,3 +32,78 @@ Text Domain:  trolllike
   width: 100%;
   height: auto;
 }
+
+.filter {
+  position: absolute;
+  z-index: 98;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 16em;
+  padding: 1em;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transform: translateX(-4em);
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+
+.filter.is-open  {
+  background-color: white;
+  height: 100vh;
+  transform: translateX(0);
+}
+
+.filter-toggle {
+  display: block;
+  width: 6em;
+  height: 6em;
+  background-color: cornflowerblue;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-inner {
+  margin-top: 2em;
+}
+
+.filter-menu {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+
+}
+
+.filter-tag {
+  font: inherit;
+  background-color: cornflowerblue;
+  border: none;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 0.2em 0.7em 0.2em;
+  margin: 1em 1em 0 0;
+  cursor: pointer;
+}
+
+.filter-icon {
+  display: block;
+  height: 3em;
+  width: 3em;
+  margin: auto;
+}
+
+.a11y-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+}
