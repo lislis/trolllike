@@ -14,7 +14,7 @@ function troll_scripts() {
 
 
         wp_register_script('poisson-disk',
-                           'https://cdn.jsdelivr.net/gh/kchapelier/fast-2d-poisson-disk-sampling@1.0.3/build/fast-poisson-disk-sampling.min.js',
+                           get_stylesheet_directory_uri() .'/js/poisson-disk.min.js',
                            array (),
                            false, false);
         wp_enqueue_script('poisson-disk');

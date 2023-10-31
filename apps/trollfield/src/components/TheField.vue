@@ -15,8 +15,7 @@
             <a-entity camera
                       id="camera"
                       look-controls
-                      position="0 1.6 0"
-                      rotation="3 48 0">
+                      position="0 1.6 0">
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
                           animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"

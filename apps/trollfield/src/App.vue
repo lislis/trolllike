@@ -37,11 +37,12 @@
          // this.isLoading = true;
 
          this.pds = new FastPoissonDiskSampling({
-             shape: [10, 10],
-             radius: 4,
+             shape: [30, 30],
+             radius: 2,
              tries: 5
          });
          this.points = this.pds.fill();
+         console.log(this.points);
 
 
          //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
