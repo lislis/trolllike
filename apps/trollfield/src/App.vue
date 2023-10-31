@@ -29,17 +29,34 @@
          return {
              //isLoading: false,
              mainCat: window.wpData.main_filter_cat,
+             pds: null,
+             points: null
          }
      },
      async created() {
          // this.isLoading = true;
+
+         this.pds = new FastPoissonDiskSampling({
+             shape: [10, 10],
+             radius: 4,
+             tries: 5
+         });
+         this.points = this.pds.fill();
+
 
          //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
          await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
              .then(d => d.json())
              .then(d => {
                  //console.log(d);
-                 this.store.addPosts(d);
+
+                 let dd = d.map((x, i) => {
+                     x.position = this.points[i];
+                     return x;
+                 })
+
+                 this.store.addPosts(dd);
+
              }).catch(e => {
                  console.log("Error", e);
              });

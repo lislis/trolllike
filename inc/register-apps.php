@@ -12,9 +12,16 @@ function troll_scripts() {
         wp_enqueue_script('threejs');
          */
 
+
+        wp_register_script('poisson-disk',
+                           'https://cdn.jsdelivr.net/gh/kchapelier/fast-2d-poisson-disk-sampling@1.0.3/build/fast-poisson-disk-sampling.min.js',
+                           array (),
+                           false, false);
+        wp_enqueue_script('poisson-disk');
+
         wp_register_script('trollfield',
                            get_stylesheet_directory_uri() .'/apps/trollfield/dist/index.js',
-                           array (),
+                           array ('poisson-disk'),
                            '0.1.0', true);
 
         wp_localize_script(

@@ -39,28 +39,30 @@ Text Domain:  trolllike
   top: 0;
   bottom: 0;
   left: 0;
-  width: 16em;
+  width: 20em;
   padding: 1em;
   background-color: transparent;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  transform: translateX(-4em);
+  transform: translateX(-5vw);
   transition: background-color 200ms ease, transform 200ms ease;
 }
 
 .filter.is-open  {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.3);
   height: 100vh;
   transform: translateX(0);
 }
 
 .filter-toggle {
   display: block;
-  width: 6em;
-  height: 6em;
-  background-color: cornflowerblue;
+  width: 5.5em;
+  height: 5.5em;
+  margin-top: 1em;
+  flex-width: 4.5em;
+  background-color: white;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -81,7 +83,7 @@ Text Domain:  trolllike
 
 .filter-tag {
   font: inherit;
-  background-color: cornflowerblue;
+  background-color: white;
   border: none;
   border-radius: 20px;
   display: inline-block;
@@ -90,7 +92,7 @@ Text Domain:  trolllike
   cursor: pointer;
 }
 .filter-tag.is-current {
-  background-color: blue;
+  background-color: #ff1493;
 }
 
 .filter-icon {

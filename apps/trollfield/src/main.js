@@ -5,8 +5,17 @@ import router from './router/index'
 import PageTransition from 'vue3-page-transition'
 
 import 'aframe/dist/aframe-master.js';
+import 'aframe-extras/dist/aframe-extras.min.js';
+import 'aframe-environment-component/dist/aframe-environment-component.min.js';
 
-import 'aframe-extras/dist/aframe-extras.js';
+//import '@/vendor/joystick.js';
+
+//import "nipplejs/dist/nipplejs.js";
+
+//import 'fast-2d-poisson-disk-sampling/src/fast-poisson-disk-sampling.js';
+
+//import "https://cdn.jsdelivr.net/gh/kchapelier/fast-2d-poisson-disk-sampling@1.0.3/build/fast-poisson-disk-sampling.min.js";
+
 
 //import { TroisJSVuePlugin } from 'troisjs';
 
