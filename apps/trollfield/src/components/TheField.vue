@@ -8,27 +8,16 @@
 
         <!-- PLAYER -->
         <a-entity id="rig"
-                  movement-controls="controls: keyboard, touch, nipple"
-                  nipple-controls="mode: dynamic"
+                  movement-controls="controls: keyboard, nipple"
+                  nipple-controls="moveJoystickPosition: false"
                   position="8 0 14"
         >
             <a-entity camera
                       id="camera"
                       look-controls
                       position="0 1.6 0">
-                <a-entity cursor="fuse: true; fuseTimeout: 500"
-                          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-                          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-                          animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-                          position="0 0 -1"
-                          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                          material="color: black; shader: flat">
-                </a-entity>
             </a-entity>
         </a-entity>
-
-
-        <!-- <a-tube path="5 0 5, 5 0 -5, -5 0 -5" radius="0.5"></a-tube> -->
 
         <a-light type="ambient" color="#ccc"></a-light>
         <a-light color="#ddf" distance="100" intensity="0.4" type="point"></a-light>
@@ -40,7 +29,7 @@
                    :position="`${post.position[0]} 0.5 ${post.position[1]}`" rotation="0 45 0"
                    color="#4CC3D9">
             <a-text :value="post.title.rendered"
-            position="-0.65 0 0.1"></a-text>
+                    position="-0.65 0 0.1"></a-text>
         </a-entity>
 
 
@@ -51,6 +40,7 @@
 </template>
 
 <script>
+ import nipplejs from "nipplejs/dist/nipplejs.js";
  import { usePostsStore } from '@/stores/posts'
 
  export default {

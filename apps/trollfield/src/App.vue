@@ -51,8 +51,14 @@
              .then(d => {
                  //console.log(d);
 
+
+
                  let dd = d.map((x, i) => {
-                     x.position = this.points[i];
+                     if (this.points.length > i) {
+                         x.position = this.points[i];
+                     } else {
+                         x.position = this.pds.next();
+                     }
                      return x;
                  })
 

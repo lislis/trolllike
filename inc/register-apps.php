@@ -5,19 +5,32 @@ add_action("wp_enqueue_scripts", "troll_scripts");
 function troll_scripts() {
 
     if (is_page_template('page-trollfield.php')) {
-        /*wp_register_script('threejs',
-                           get_stylesheet_directory_uri() .'/js/three.min.js',
-                           array (),
-                           false, false);
-        wp_enqueue_script('threejs');
-         */
-
-
         wp_register_script('poisson-disk',
                            get_stylesheet_directory_uri() .'/js/poisson-disk.min.js',
-                           array (),
+                           array(),
                            false, false);
+
         wp_enqueue_script('poisson-disk');
+
+        /* wp_register_script('aframe',
+         *                    get_stylesheet_directory_uri() .'/js/aframe.min.js',
+         *                    array(),
+         *                    false, false);
+         * wp_enqueue_script('aframe');
+         */
+        /* wp_register_script('aframe-extras',
+         *                    get_stylesheet_directory_uri() .'/js/aframe-extras.min.js',
+         *                    array('aframe'),
+         *                    false, false);
+         * wp_enqueue_script('aframe-extras'); */
+
+        /* wp_register_script('aframe-env',
+         *                    get_stylesheet_directory_uri() .'/js/aframe-environment-component.min.js',
+         *                    array('aframe'),
+         *                    false, false);
+         * wp_enqueue_script('aframe-env');
+         */
+
 
         wp_register_script('trollfield',
                            get_stylesheet_directory_uri() .'/apps/trollfield/dist/index.js',

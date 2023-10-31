@@ -48,6 +48,7 @@ Text Domain:  trolllike
   align-items: center;
   transform: translateX(-5vw);
   transition: background-color 200ms ease, transform 200ms ease;
+  height: 0;
 }
 
 .filter.is-open  {
@@ -61,7 +62,8 @@ Text Domain:  trolllike
   width: 5.5em;
   height: 5.5em;
   margin-top: 1em;
-  flex-width: 4.5em;
+  flex-basis: 5.5em;
+  flex-shrink: 0;
   background-color: white;
   border-radius: 50%;
   border: none;
@@ -70,6 +72,9 @@ Text Domain:  trolllike
 
 .filter-inner {
   margin-top: 2em;
+  overflow: scroll;
+  scrollbar-color: black black;
+  scrollbar-width: none;
 }
 
 .filter-menu {
