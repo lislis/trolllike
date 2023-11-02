@@ -1,7 +1,7 @@
 <?php
 
 function frontpage_section_description() {
-    echo '<p>Social Media und andere Links</p>';
+    echo '<p>IDs von Kategorien und Tags mit spezieller Bedeutung</p>';
 }
 
 function main_filter_cat_display() { ?>
@@ -9,6 +9,10 @@ function main_filter_cat_display() { ?>
 <?php
 }
 
+function youtube_tag_display() { ?>
+    <input type="text" name="youtube_tag" id="youtube_tag" value="<?php echo get_option('youtube_tag'); ?>" />
+<?php
+}
 
 
 function trolllike_theme_settings(){
@@ -18,6 +22,10 @@ function trolllike_theme_settings(){
 
     add_settings_field("main_filter_cat", "Hauptcategorie für Archiv", "main_filter_cat_display", "theme-options", "front_page");
     register_setting( 'theme-options-grp', 'main_filter_cat');
+
+
+    add_settings_field("youtube_tag", "Tag-ID für YouTube", "youtube_tag_display", "theme-options", "front_page");
+    register_setting( 'theme-options-grp', 'youtube_tag');
 
 }
 add_action('admin_init','trolllike_theme_settings');

@@ -13,10 +13,10 @@
     "aframe-extras": "^7.1.0",
     "fast-2d-poisson-disk-sampling": "^1.0.3",
     "nipplejs": "^0.10.1",
+    "perlin-noise-2d": "^1.0.0",
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
-    "vue-router": "^4.1.6",
-    "vue3-page-transition": "^0.1.5"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

@@ -2,10 +2,7 @@
     <div>
         <TheField />
 
-        <router-view v-slot='{ Component }'>
-            <PageTransition name='zoom' appear>
-                <component :is='Component' />
-            </PageTransition>
+        <router-view>
         </router-view>
     </div>
 </template>
@@ -13,7 +10,7 @@
 <script>
  import TheField from "@/components/TheField.vue";
  import { usePostsStore } from "@/stores/posts.js";
-
+ import PerlinNoise from 'perlin-noise-2d'
 
  export default {
      name: "TrollfieldApp",
@@ -27,35 +24,34 @@
              //isLoading: false,
              mainCat: window.wpData.main_filter_cat,
              pds: null,
-             points: null
+             points: null,
+             perlin: null
          }
      },
      async created() {
          // this.isLoading = true;
 
          this.pds = new FastPoissonDiskSampling({
-             shape: [30, 30],
-             radius: 2,
+             shape: [20, 20],
+             radius: 3,
              tries: 5
          });
          this.points = this.pds.fill();
-         console.log(this.points);
 
+         this.perlin = new PerlinNoise(2938, 345, 1984);
 
          AFRAME.registerComponent('cursor-listener', {
              init() {
                  this.el.addEventListener('click', function (evt) {
-                     console.log(evt)
+                     //console.log(evt)
                      let slug = evt.target.attributes['post-url'];
-                     console.log(slug)
+                     //console.log(slug)
                      if (slug) {
                          window.vueRouter.push(`/${slug.value}`);
                      }
                  });
              }
          });
-
-
 
          //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
          await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
@@ -70,10 +66,18 @@
                          x.position = this.pds.next();
                      }
                      return x;
-                 })
+                 }).map(x => {
+                     //console.log(x.position)
+                     let p = this.perlin.perlin(x.position[0], x.position[1]);
+                     if (p) {
+                         x.height = Math.abs(p) * 7 + 0.8;
+                     } else {
+                         x.height = 0.5;
+                     }
+                     return x;
+                 });
 
                  this.store.addPosts(dd);
-
              }).catch(e => {
                  console.log("Error", e);
              });
