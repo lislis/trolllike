@@ -14,28 +14,48 @@ Text Domain:  trolllike
   box-sizing: border-box;
 }
 
+html, body {
+  font-family: sans-serif;
+}
+
 .single-view {
   position: absolute;
-  z-index: 99;
-  width: 50vw;
+  z-index: 95;
+  width: 80vw;
   padding: 1vw;
-  background: white;
+  background: rgba(255, 255, 255, 0.5);
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   margin: auto;
-  height: 40vh;
-  overflow: scroll;
+  height: 80vh;
+  border-radius: 10px;
+  //overflow: scroll;
 }
 .single-view img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.single-view iframe,
+.single-view video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .filter {
   position: absolute;
-  z-index: 98;
+  z-index: 97;
   top: 0;
   bottom: 0;
   left: 0;
@@ -46,7 +66,7 @@ Text Domain:  trolllike
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  transform: translateX(-5vw);
+  transform: translateX(-7em);
   transition: background-color 200ms ease, transform 200ms ease;
   height: 0;
 }
@@ -59,15 +79,15 @@ Text Domain:  trolllike
 
 .filter-toggle {
   display: block;
-  width: 5.5em;
-  height: 5.5em;
-  margin-top: 1em;
-  flex-basis: 5.5em;
+  width: 4.5em;
+  height: 4.5em;
+  flex-basis: 4.5em;
   flex-shrink: 0;
   background-color: white;
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  border: solid 3px black;
 }
 
 .filter-inner {
@@ -92,9 +112,11 @@ Text Domain:  trolllike
   border: none;
   border-radius: 20px;
   display: inline-block;
-  padding: 0.2em 0.7em 0.2em;
+  padding: 0.2em 0.7em 0.1em;
   margin: 1em 1em 0 0;
   cursor: pointer;
+  border: solid 2px black;
+  line-height: 1.2;
 }
 .filter-tag.is-current {
   background-color: #ff1493;
@@ -102,8 +124,8 @@ Text Domain:  trolllike
 
 .filter-icon {
   display: block;
-  height: 3em;
-  width: 3em;
+  height: 2.5em;
+  width: 2.5em;
   margin: auto;
 }
 
@@ -116,4 +138,43 @@ Text Domain:  trolllike
   white-space: nowrap;
   width: 1px;
 }
-}
+
+ .close-btn {
+   position: absolute;
+   background: white;
+   display: block;
+   width: 3em;
+   height: 3em;
+   border-radius: 50%;
+   text-align: center;
+   top: -1.5em;
+   z-index: 99;
+   right: -1.5em;
+   border: 3px solid black;
+ }
+
+
+ .close-btn svg {
+   fill: black;
+   idth: 100%;
+   height: 100%;
+ }
+
+ .magic-window {
+   position: absolute;
+   background: white;
+   display: block;
+   border-radius: 50%;
+   text-align: center;
+   bottom: 1em;
+   z-index: 99;
+   right: 1em;
+   width: 3em;
+   height: 3em;
+   cursor: pointer;
+   border: 3px solid black;
+ }
+
+ .magic-window.is-active {
+   background-color: #ff1493;
+ }

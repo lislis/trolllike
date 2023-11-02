@@ -1,7 +1,5 @@
 <template>
     <div>
-        <TheFilter />
-
         <TheField />
 
         <router-view v-slot='{ Component }'>
@@ -13,14 +11,13 @@
 </template>
 
 <script>
- import TheFilter from "@/components/TheFilter.vue";
  import TheField from "@/components/TheField.vue";
  import { usePostsStore } from "@/stores/posts.js";
 
 
  export default {
      name: "TrollfieldApp",
-     components: { TheField, TheFilter },
+     components: { TheField },
      setup() {
          const store = usePostsStore();
          return { store }
@@ -45,13 +42,26 @@
          console.log(this.points);
 
 
-         //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
-         await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99`)
+         AFRAME.registerComponent('cursor-listener', {
+             init() {
+                 this.el.addEventListener('click', function (evt) {
+                     console.log(evt)
+                     let slug = evt.target.attributes['post-url'];
+                     console.log(slug)
+                     if (slug) {
+                         window.vueRouter.push(`/${slug.value}`);
+                     }
+                 });
+             }
+         });
+
+
+
+         //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
+         await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
              .then(d => d.json())
              .then(d => {
                  //console.log(d);
-
-
 
                  let dd = d.map((x, i) => {
                      if (this.points.length > i) {
