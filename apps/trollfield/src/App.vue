@@ -43,9 +43,7 @@
          AFRAME.registerComponent('cursor-listener', {
              init() {
                  this.el.addEventListener('click', function (evt) {
-                     //console.log(evt)
                      let slug = evt.target.attributes['post-url'];
-                     //console.log(slug)
                      if (slug) {
                          window.vueRouter.push(`/${slug.value}`);
                      }
@@ -57,8 +55,6 @@
          await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
              .then(d => d.json())
              .then(d => {
-                 //console.log(d);
-
                  let dd = d.map((x, i) => {
                      if (this.points.length > i) {
                          x.position = this.points[i];
@@ -74,6 +70,9 @@
                      } else {
                          x.height = 0.5;
                      }
+                     return x;
+                 }).map(x => {
+                     x.rot = Math.ceil((Math.random() * 2 - 1) * 35);
                      return x;
                  });
 

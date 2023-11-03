@@ -1,17 +1,10 @@
 <template>
     <a-scene v-if="store.allPosts.length != 0" vr-mode-ui="enabled: true">
         <a-assets>
-            <template v-for="(post, i) in store.allPosts">
-                <img v-if="post['_embedded']['wp:featuredmedia'] && post['_embedded']['wp:featuredmedia'].length >= 1"
-                    :id="post.slug"
-                     :src="post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['source_url']"
-                     crossorigin="anonymous">
-
-                <img v-if="isYouTube(post)"
-                     :id="post.slug"
-                     :src="youTubeThumbnail(post)"
-                     crossorigin="anonymous">
-                </template>
+            <AAsset v-for="(post, i) in store.allPosts"
+                    :key="post.id"
+                    :post="post">
+            </AAsset>
         </a-assets>
 
         <a-sky color="#ECECEC"></a-sky>
@@ -68,10 +61,11 @@
  import nipplejs from "nipplejs/dist/nipplejs.js";
  import { usePostsStore } from '@/stores/posts'
  import APost from '@/components/APost.vue';
+ import AAsset from '@/components/AAsset.vue';
 
  export default {
      name: "TheField",
-     components: {APost},
+     components: {APost, AAsset},
      created() {
          isLoading: false;
          //console.log(this.points);
@@ -89,24 +83,10 @@
          toggleMagicWindow() {
              this.isMagicWindow = !this.isMagicWindow
          },
-         isYouTube(post) {
-             const ytID = parseInt(window.wpData.youtube_tag, 10);
-             console.log(`asset is youtube ${post.tags.includes(ytID)}`);
-             return post.tags.includes(ytID);
-         },
-         youTubeThumbnail(post) {
-             // https://i3.ytimg.com/vi/9FgXXcKC5uU/maxresdefault.jpg
-             // https://www.youtube.com/watch?v=zE7PKRjrid4
-             let str = '';
-             if (post.meta.youtube_link && post.meta.youtube_link !== "") {
-                str = `${post.meta.youtube_link.replace("www.youtube.com/watch?v=", "i3.ytimg.com/vi/")}/maxresdefault.jpg`;
-             }
-             return str;
-         }
      },
      computed: {
          magicWindow() {
-             console.log(`magicWindowTrackingEnabled: ${this.isMagicWindow}`);
+             //console.log(`magicWindowTrackingEnabled: ${this.isMagicWindow}`);
              return `magicWindowTrackingEnabled: ${this.isMagicWindow}`;
          }
 
