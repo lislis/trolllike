@@ -23,3 +23,39 @@ register_meta('post', 'video_link', [
     'single'         => true,
     'show_in_rest'   => true,
 ]);
+
+
+function add_cors_http_header(){
+  header("Access-Control-Allow-Origin: *");
+}
+add_action('init', 'add_cors_http_header');
+
+function thumbnail_url($id, $type) {
+    $filename = md5($id).'.jpg';
+    $fallback = '_fallback.jpg';
+    $folder_name = 'video-thumbnails';
+    $folder_public = wp_upload_dir()['baseurl'].'/'.$folder_name;
+    $folder_path = wp_upload_dir()['basedir'].'/'.$folder_name;
+    if( !file_exists($folder_path) ) {
+        mkdir($folder_path);
+    }
+    if( file_exists($folder_path.'/'.$filename) ) {
+        return $folder_public.'/'.$filename;
+    }
+    if($type === 'youtube') {
+      //$content = @file_get_contents('https://img.youtube.com/vi/'.$id.'/0.jpg');
+      $content = @file_get_contents('https://i3.ytimg.com/vi/'. $id .'/maxresdefault.jpg');
+    }
+    if($type === 'vimeo') {
+        $content = @file_get_contents('http://vimeo.com/api/v2/video/' . $this->queryString['vimeoid'] . '.json');
+        if ($content != '') {
+            $content = json_decode($content);
+            $content = @file_get_contents($content[0]->thumbnail_large);
+        }
+    }
+    if( $content == '' ) {
+        return $folder_public.'/'.$fallback;
+    }
+    file_put_contents($folder_path.'/'.$filename, $content);
+    return $folder_public.'/'.$filename;
+}

@@ -17,7 +17,7 @@ export const postYoutubeThumbnail = (post) => {
     // https://www.youtube.com/watch?v=zE7PKRjrid4
     let str = '';
     if (post.meta.youtube_link && post.meta.youtube_link !== "") {
-        str = `${post.meta.youtube_link.replace("www.youtube.com/watch?v=", "i3.ytimg.com/vi/")}/maxresdefault.jpg`;
+        str = `/${post.meta.youtube_link.replace("www.youtube.com/watch?v=", "i3.ytimg.com/vi/")}/maxresdefault.jpg`;
     }
     return str;
 };

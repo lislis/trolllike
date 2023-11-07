@@ -6,11 +6,13 @@
         <template v-if="hasImage">
             <a-image :post-url="post.slug"
                      :src="`#${post.slug}`"
-                     width="1.5" :height="`${width / height * 1.5}`"></a-image>
+                     crossorigin="anonymous"
+                     width="1.5" :height="`${height / width * 1.5}`"></a-image>
         </template>
         <template v-else-if="isYouTube">
             <a-image :post-url="post.slug"
                      :src="`#${post.slug}`"
+                     crossorigin="anonymous"
                      width="2" height="1.5"></a-image>
         </template>
         <template v-else>

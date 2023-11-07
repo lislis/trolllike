@@ -8,68 +8,73 @@
 </template>
 
 <script>
- import TheField from "@/components/TheField.vue";
- import { usePostsStore } from "@/stores/posts.js";
- import PerlinNoise from 'perlin-noise-2d'
+import TheField from "@/components/TheField.vue";
+import { usePostsStore } from "@/stores/posts.js";
+import PerlinNoise from 'perlin-noise-2d'
 
- export default {
-     name: "TrollfieldApp",
-     components: { TheField },
-     setup() {
-         const store = usePostsStore();
-         return { store }
-     },
-     data() {
-         return {
-             //isLoading: false,
-             mainCat: window.wpData.main_filter_cat,
-             pds: null,
-             points: null,
-             perlin: null
-         }
-     },
-     async created() {
-         // this.isLoading = true;
+export default {
+  name: "TrollfieldApp",
+  components: { TheField },
+  setup() {
+    const store = usePostsStore();
+    return { store }
+  },
+  data() {
+    return {
+      //isLoading: false,
+      mainCat: window.wpData.main_filter_cat,
+      pds: null,
+      points: null,
+      perlin: null
+    }
+  },
+  async created() {
+    // this.isLoading = true;
 
-         this.pds = new FastPoissonDiskSampling({
-             shape: [20, 20],
-             radius: 3,
-             tries: 5
-         });
-         this.points = this.pds.fill();
+    this.pds = new FastPoissonDiskSampling({
+      shape: [35, 35],
+      radius: 2,
+      tries: 5
+    });
+    this.points = this.pds.fill();
 
-         this.perlin = new PerlinNoise(2938, 345, 1984);
+      console.log(this.points)
+    this.perlin = new PerlinNoise(2938, 345, 1984);
 
-         AFRAME.registerComponent('cursor-listener', {
-             init() {
-                 this.el.addEventListener('click', function (evt) {
-                     let slug = evt.target.attributes['post-url'];
-                     if (slug) {
-                         window.vueRouter.push(`/${slug.value}`);
-                     }
-                 });
-             }
-         });
+    AFRAME.registerComponent('cursor-listener', {
+      init() {
+        this.el.addEventListener('click', function (evt) {
+          let slug = evt.target.attributes['post-url'];
+          if (slug) {
+            window.vueRouter.push(`/${slug.value}`);
+          }
+        });
+      }
+    });
 
-         //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
-         await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
-             .then(d => d.json())
-             .then(d => {
-                 let dd = d.map((x, i) => {
-                     if (this.points.length > i) {
-                         x.position = this.points[i];
-                     } else {
-                         x.position = this.pds.next();
+    //await fetch(`https://sternapau.de/wp-json/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
+    //await fetch(`${window.wpData.rest_url}/wp/v2/posts?categories=${this.mainCat}&per_page=99&_embed=true`)
+    await fetch(`${window.wpData.rest_url}/wp/v2/posts?per_page=99&_embed=true`)
+      .then(d => d.json())
+      .then(d => {
+        let dd = d.map((x, i) => {
+          if (this.points.length > i) {
+            x.position = this.points[i];
+          } else {
+            x.position = this.pds.next();
                      }
                      return x;
                  }).map(x => {
                      //console.log(x.position)
-                     let p = this.perlin.perlin(x.position[0], x.position[1]);
-                     if (p) {
-                         x.height = Math.abs(p) * 7 + 0.8;
-                     } else {
-                         x.height = 0.5;
+                     if (x.position && x.position.length >= 2) {
+                         let p = this.perlin.perlin(x.position[0], x.position[1]);
+                         if (p) {
+                             x.height = Math.abs(p) * 7 + 0.8;
+                         } else {
+                             x.height = 0.5;
+                         }
                      }
+
                      return x;
                  }).map(x => {
                      x.rot = Math.ceil((Math.random() * 2 - 1) * 35);
@@ -87,7 +92,7 @@
                  let dat = d;
                  // filter unique
                  let temp = [];
-                 let ids = []
+                 let ids = [];
                  dat.forEach(x => {
                      if (!ids.includes(x.term_id)) {
                          temp.push(x);

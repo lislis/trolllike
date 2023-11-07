@@ -37,6 +37,19 @@ function troll_scripts() {
                            array ('poisson-disk'),
                            '0.1.0', true);
 
+        $posts = get_posts(array('type' => 'post',
+                                 'numberposts' => -1,
+                                 'meta_key'   => 'youtube_link',));
+
+        $urls = array();
+        foreach ($posts as $post) {
+            $meta = get_post_meta($post->ID, 'youtube_link', true);
+            $pos  = strpos($meta, '=');
+            $id = substr($meta, $pos + 1);
+            $url = thumbnail_url($id, 'youtube');
+            $urls[$post->ID] = $url;
+        }
+
         wp_localize_script(
             'trollfield',
             'wpData',
@@ -47,6 +60,7 @@ function troll_scripts() {
                 'main_filter_cat' => get_option('main_filter_cat'),
                 'youtube_tag_id' => get_option('youtube_tag'),
                 'video_tag_id' => get_option('video_tag'),
+                'youtube_urls' => $urls,
             )
         );
 
