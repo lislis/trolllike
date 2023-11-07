@@ -15,7 +15,7 @@
         <a-entity id="rig"
                   movement-controls="controls: keyboard, nipple"
                   nipple-controls="moveJoystickPosition: false"
-                  position="8 0 14"
+                  position="0 0 0"
         >
             <a-entity camera
                       id="camera"
@@ -37,10 +37,12 @@
         <a-light color="#ddf" distance="100" intensity="0.4" type="point"></a-light>
         <a-light color="#ddf" position="3 10 -10" distance="50" intensity="0.4" type="point"></a-light>
 
+        <a-entity position="-30 0 -30" id="all-posts">
         <APost  v-for="(post, i) in store.getPostsByCurrentFilter"
                 :key="post.id"
                 :post="post">
         </APost>
+        </a-entity>
 
     </a-scene>
     <div v-else>

@@ -38,16 +38,17 @@ function troll_scripts() {
                            '0.1.0', true);
 
         $posts = get_posts(array('type' => 'post',
-                                 'numberposts' => -1,
-                                 'meta_key'   => 'youtube_link',));
+                                 'numberposts' => -1));
 
         $urls = array();
         foreach ($posts as $post) {
             $meta = get_post_meta($post->ID, 'youtube_link', true);
-            $pos  = strpos($meta, '=');
-            $id = substr($meta, $pos + 1);
-            $url = thumbnail_url($id, 'youtube');
-            $urls[$post->ID] = $url;
+            if ($meta != "") {
+                $pos  = strpos($meta, '=');
+                $id = substr($meta, $pos + 1);
+                $url = thumbnail_url($id, 'youtube');
+                $urls[$post->ID] = $url;
+            }
         }
 
         wp_localize_script(

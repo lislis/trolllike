@@ -24,7 +24,7 @@
      computed: {
          item() {
              return this.store.getPostBySlug(this.$route.params.slug);
-         }
+         },
      }
  }
 </script>

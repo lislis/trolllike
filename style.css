@@ -95,6 +95,11 @@ html, body {
   position: relative;
 }
 
+.single-content-wrapper {
+  overflow: scroll;
+  height: 100%;
+}
+
 
 .filter {
   position: absolute;

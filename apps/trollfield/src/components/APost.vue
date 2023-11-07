@@ -13,7 +13,7 @@
             <a-image :post-url="post.slug"
                      :src="`#${post.slug}`"
                      crossorigin="anonymous"
-                     width="2" height="1.5"></a-image>
+                     width="2.2" height="1.5"></a-image>
         </template>
         <template v-else>
             <a-entity :post-url="post.slug"  geometry="primitive: box; width: 1.5; height: 1.3; depth: 0.2"></a-entity>
