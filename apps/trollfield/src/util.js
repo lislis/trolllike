@@ -13,17 +13,33 @@ export const postImgUrl = (post) => {
 };
 
 export const postYoutubeThumbnail = (post) => {
+    const id = post.id;
     let str = '';
-
-    // if (post.meta.youtube_link && post.meta.youtube_link !== "") {
-    //     str = `/${post.meta.youtube_link.replace("www.youtube.com/watch?v=", "i3.ytimg.com/vi/")}/maxresdefault.jpg`;
-    // }
-
-    let id = post.id;
     // this is an object that's filled by wordpress
     if (window.wpData.youtube_urls[id]) {
         str = window.wpData.youtube_urls[id];
     }
-
     return str;
+};
+
+export const isVideo = (post, tagId) => {
+    return post.tags.includes(tagId);
+};
+
+export const postVideoUrl = (post) => {
+    let str = '';
+    if (post['meta']['video_link']) {
+        str = post['meta']['video_link'];
+    }
+    return str;
+};
+
+export const samplePoints = (x_max, y_max) => {
+    let pds = new FastPoissonDiskSampling({
+        shape: [x_max, y_max],
+        radius: 3,
+        tries: 5
+    });
+
+    return pds.fill();
 };

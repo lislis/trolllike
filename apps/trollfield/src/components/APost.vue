@@ -3,32 +3,36 @@
               cursor-listener
               :position="`${post.position[0]} ${post.height} ${post.position[1]}`" :rotation="`0 ${post.rot} 0`">
 
-        <template v-if="hasImage">
-            <a-image :post-url="post.slug"
-                     :src="`#${post.slug}`"
-                     crossorigin="anonymous"
-                     width="1.5" :height="`${height / width * 1.5}`"></a-image>
-        </template>
-        <template v-else-if="isYouTube">
-            <a-image :post-url="post.slug"
-                     :src="`#${post.slug}`"
-                     crossorigin="anonymous"
-                     width="2.2" height="1.5"></a-image>
-        </template>
+        <a-image  v-if="isYouTube"
+                  :post-url="post .slug"
+                  :src="`#${post.slug}`"
+                  width="2.2" height="1.5"></a-image>
+
+        <a-video  v-else-if="isVideo"
+                  :post-url="post.slug"
+                  :src="`#${post.slug}`"
+                  width="2" height="2"
+                  autoplay loop="true"></a-video>
+
+        <a-image  v-else-if="hasImage"
+                  :post-url="post.slug"
+                  :src="`#${post.slug}`"
+                  width="1.5" :height="`${height / width * 1.5}`"></a-image>
+
         <template v-else>
             <a-entity :post-url="post.slug"  geometry="primitive: box; width: 1.5; height: 1.3; depth: 0.2"></a-entity>
             <a-text :post-url="post.slug"
-                :value="post.title.rendered"
-                position="-0.65 0 0.1"></a-text>
+                    :value="post.title.rendered"
+                    position="-0.65 0 0.1"></a-text>
         </template>
-
     </a-entity>
 </template>
 <script>
  import {isPostYoutube,
          postYoutubeThumbnail,
          hasPostImage,
-         postImgUrl } from '@/util.js';
+         postImgUrl,
+         isVideo } from '@/util.js';
 
 
  export default {
@@ -43,14 +47,18 @@
              return hasPostImage(this.post);
          },
          imgUrl() {
-           return postImgUrl(this.post);
+             return postImgUrl(this.post);
          },
          width() {
              return this.post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['width'];
          },
          height() {
              return this.post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['height'];
-         }
+         },
+         isVideo() {
+             const vidID = parseInt(window.wpData.video_tag_id, 10);
+             return isVideo(this.post, vidID);
+         },
      }
  }
 </script>

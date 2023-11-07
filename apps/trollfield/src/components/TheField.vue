@@ -37,7 +37,7 @@
         <a-light color="#ddf" distance="100" intensity="0.4" type="point"></a-light>
         <a-light color="#ddf" position="3 10 -10" distance="50" intensity="0.4" type="point"></a-light>
 
-        <a-entity position="-30 0 -30" id="all-posts">
+        <a-entity position="0 0 0" id="all-posts">
         <APost  v-for="(post, i) in store.getPostsByCurrentFilter"
                 :key="post.id"
                 :post="post">

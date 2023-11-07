@@ -1,14 +1,21 @@
 <template>
     <template>
-        <img v-if="hasImage"
+        <img v-if="isYouTube"
+             :id="post.slug"
+             :src="youTubeThumbnail"
+             crossorigin="anonymous">
+
+        <video v-else-if="isVideo"
+               :id="post.slug"
+               :src="videoUrl"
+               webkit-playsinline
+               playsinline></video>
+
+        <img v-else-if="hasImage"
              :id="post.slug"
              :src="post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['source_url']"
              crossorigin="anonymous">
 
-        <img v-else="isYouTube"
-             :id="post.slug"
-             :src="youTubeThumbnail"
-             crossorigin="anonymous">
     </template>
 </template>
 <script>
@@ -16,7 +23,9 @@
  import {isPostYoutube,
          postYoutubeThumbnail,
          hasPostImage,
-         postImgUrl } from '@/util.js';
+         postImgUrl,
+         isVideo,
+         postVideoUrl } from '@/util.js';
 
 
  export default {
@@ -39,6 +48,13 @@
          },
          imgUrl() {
              return postImgUrl(this.post);
+         },
+         isVideo() {
+             const vidID = parseInt(window.wpData.video_tag_id, 10);
+             return isVideo(this.post, vidID);
+         },
+         videoUrl() {
+             return postVideoUrl(this.post);
          }
      }
 
