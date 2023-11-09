@@ -85,7 +85,7 @@ html, body {
   }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1920px) {
   .single-view .wp-block-gallery .wp-block-image {
     height: 100%;
   }

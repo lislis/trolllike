@@ -9,7 +9,8 @@
                :id="post.slug"
                :src="videoUrl"
                webkit-playsinline
-               playsinline></video>
+               playsinline
+               crossorigin="anonymous"></video>
 
         <img v-else-if="hasImage"
              :id="post.slug"

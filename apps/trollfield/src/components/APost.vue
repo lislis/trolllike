@@ -11,7 +11,7 @@
         <a-video  v-else-if="isVideo"
                   :post-url="post.slug"
                   :src="`#${post.slug}`"
-                  width="2" height="2"
+                  :width="videoWidth" :height="videoHeight"
                   autoplay loop="true"></a-video>
 
         <a-image  v-else-if="hasImage"
@@ -38,6 +38,24 @@
  export default {
      name: "a-post",
      props: ['post'],
+     data() {
+         return {
+             videoWidth: null,
+             videoHeight: null
+         }
+     },
+     mounted() {
+         if (this.isVideo) {
+             window.setTimeout(() => {
+                 //console.log(this.post.id);
+                 //console.log(this.post.slug);
+                 let el = document.querySelector(`#${this.post.slug}`);
+                 let ratio = el.videoHeight / el.videoWidth;
+                 this.videoWidth = 2.2;
+                 this.videoHeight = this.videoWidth * ratio;
+             }, 100);
+         }
+     },
      computed: {
          isYouTube() {
              const ytID = parseInt(window.wpData.youtube_tag_id, 10);

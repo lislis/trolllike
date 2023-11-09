@@ -30,13 +30,13 @@
          }
      },
      async created() {
-         const x_max = 60;
-         const y_max = 60;
+         const x_max = 70;
+         const y_max = 70;
 
          // use this to generate new points
-         //this.points = samplePoints(x_max, y_max);
+         this.points = samplePoints(x_max, y_max);
          // use this to use points from @/data.js
-         this.points = points;
+         //this.points = points;
          // This can be used to copy the points and then paste them
          // to @/data.js
          window.points = this.points;
@@ -70,9 +70,9 @@
                  }).map(x => {
                      if (x.position && x.position.length >= 2) {
                          let p = this.perlin.perlin(x.position[0], x.position[1]);
-                         x.height = 0.6;
+                         x.height = 0.7;
                          if (p) {
-                             x.height = Math.abs(p) * 4 + 0.8;
+                             x.height = Math.abs(p) * 4 + 0.85;
                          }
                      }
                      return x;
@@ -80,16 +80,16 @@
                      x.rot = Math.ceil((Math.random() * 2 - 1) * 35);
                      return x;
                  }).map(x => {
-
                      x.position[0] = x.position[0] - (x_max/2.0);
                      x.position[1] = x.position[1] - (y_max/2.0);
-                     console.log(x)
                      return x;
+                 }).filter(x => {
+                     return !isNaN(x.position[0]) && !isNaN(x.position[1])
                  });
 
                  this.store.addPosts(dd);
              }).catch(e => {
-                 console.log("Error", e);
+                 console.log("Error here?", e);
              });
 
          await fetch(`${window.wpData.rest_url}/trolllike-theme/v1/tags`)

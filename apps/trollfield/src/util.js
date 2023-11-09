@@ -38,7 +38,7 @@ export const samplePoints = (x_max, y_max) => {
     let pds = new FastPoissonDiskSampling({
         shape: [x_max, y_max],
         radius: 3,
-        tries: 5
+        tries: 7
     });
 
     return pds.fill();

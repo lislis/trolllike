@@ -7,9 +7,7 @@
             </AAsset>
         </a-assets>
 
-        <a-sky color="#ECECEC"></a-sky>
-
-        <a-entity environment="flatShading: true; horizonColor: #484848; gridColor: #eee; dressingColor: #c5c5c5; groundColor2: #cccccc; groundTexture: squares; groundYScale: 6.894; grid: 1x1; active: true; fog: 0.88; dressingScale: 1.01; dressingAmount: 7; dressing: apparatus; ground: noise; skyType: gradient; skyColor: #0d0d0d; lightPosition: [object Object]; groundColor: #252525; dressingVariance: [object Object]; preset: checkerboard"></a-entity>
+        <a-entity environment="dressing: none; groundYScale: 11.16; ground: hills; skyColor: #aaa; groundColor2: #adadad; grid: 1x1; dressingScale: 2.1; shadowSize: 10.13; groundTexture: squares; active: true; skyType: gradient; horizonColor: #404040; lightPosition: [object Object]; fog: 0.81; flatShading: true; groundColor: #252525; dressingColor: #9f9f9f; dressingVariance: [object Object]; preset: checkerboard"></a-entity>
 
         <!-- PLAYER -->
         <a-entity id="rig"
