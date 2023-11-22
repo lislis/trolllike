@@ -20,11 +20,20 @@
          return { store }
      },
      created() {
+         window.setTimeout(() => {this.showPDF()}, 100);
      },
      computed: {
          item() {
              return this.store.getPostBySlug(this.$route.params.slug);
          },
+     },
+     methods: {
+         showPDF() {
+             let obj = document.querySelector('.wp-block-file__embed');
+             if (obj && obj.hidden) {
+                 obj.hidden = false;
+             }
+         }
      }
  }
 </script>

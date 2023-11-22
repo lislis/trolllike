@@ -66,8 +66,8 @@
      name: "TheField",
      components: {APost, AAsset},
      created() {
-         isLoading: false;
-         //console.log(this.points);
+       isLoading: false;
+       //console.log(this.points);
      },
      data() {
          return {
