@@ -69,6 +69,7 @@ function troll_scripts() {
 
         wp_enqueue_style( 'trolllike-style', get_stylesheet_uri(), array(), "0.0.1" );
         wp_enqueue_style( 'trolllike-app-style', get_stylesheet_directory_uri() . "/app/trollfield/dist/assets/index.css", array('troll_style'), "0.0.1" );
+        wp_enqueue_style( 'preview-visual-link', plugins_url( 'visual-link-preview/dist/public.css', dirname(__FILE__) ) );
     }
 }
 

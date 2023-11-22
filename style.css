@@ -21,15 +21,16 @@ html, body {
 .single-view {
   position: absolute;
   z-index: 95;
-  width: 80vw;
+  //width: 80vw;
+  width: 60vw;
   padding: 1vw;
   background: rgba(255, 255, 255, 0.5);
   top: 0;
   bottom: 0;
-  right: 0;
-  left: 0;
+  //right: 0;
+  left: 4vw;
   margin: auto;
-  height: 80vh;
+  height: 70vh;
   border-radius: 10px;
   //overflow: scroll;
 }
