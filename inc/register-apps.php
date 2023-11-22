@@ -61,6 +61,8 @@ function troll_scripts() {
                 'main_filter_cat' => get_option('main_filter_cat'),
                 'youtube_tag_id' => get_option('youtube_tag'),
                 'video_tag_id' => get_option('video_tag'),
+                'link_tag' => get_option('link_tag'),
+                'text_tag' => get_option('text_tag'),
                 'youtube_urls' => $urls,
             )
         );

@@ -19,6 +19,16 @@ function video_tag_display() { ?>
 <?php
 }
 
+function link_tag_display() { ?>
+    <input type="text" name="link_tag" id="link_tag" value="<?php echo get_option('link_tag'); ?>" />
+<?php
+}
+
+function text_tag_display() { ?>
+    <input type="text" name="text_tag" id="text_tag" value="<?php echo get_option('text_tag'); ?>" />
+<?php
+}
+
 
 
 function trolllike_theme_settings(){
@@ -35,6 +45,12 @@ function trolllike_theme_settings(){
 
     add_settings_field("video_tag", "Tag-ID für Video", "video_tag_display", "theme-options", "front_page");
     register_setting( 'theme-options-grp', 'video_tag');
+
+    add_settings_field("link_tag", "Tag-ID für Links", "link_tag_display", "theme-options", "front_page");
+    register_setting( 'theme-options-grp', 'link_tag');
+
+    add_settings_field("text_tag", "Tag-ID für Text", "text_tag_display", "theme-options", "front_page");
+    register_setting( 'theme-options-grp', 'text_tag');
 
 }
 add_action('admin_init','trolllike_theme_settings');
