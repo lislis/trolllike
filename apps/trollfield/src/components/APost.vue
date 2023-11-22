@@ -20,9 +20,9 @@
                   width="1.5" :height="`${height / width * 1.5}`"></a-image>
 
         <template v-else>
-            <a-entity :post-url="post.slug"  geometry="primitive: box; width: 1.5; height: 1.3; depth: 0.2"></a-entity>
             <a-text :post-url="post.slug"
                     :value="post.title.rendered"
+                    :text="textAttr"
                     position="-0.65 0 0.1"></a-text>
         </template>
     </a-entity>
@@ -32,6 +32,7 @@
          postYoutubeThumbnail,
          hasPostImage,
          postImgUrl,
+         getRandomColor,
          isVideo } from '@/util.js';
 
 
@@ -47,8 +48,6 @@
      mounted() {
          if (this.isVideo) {
              window.setTimeout(() => {
-                 //console.log(this.post.id);
-                 //console.log(this.post.slug);
                  let el = document.querySelector(`#${this.post.slug}`);
                  let ratio = el.videoHeight / el.videoWidth;
                  this.videoWidth = 2.2;
@@ -57,6 +56,9 @@
          }
      },
      computed: {
+         textAttr() {
+             return `font: exo2bold;side: double; wrapCount: 15; color: ${getRandomColor()}`;
+         },
          isYouTube() {
              const ytID = parseInt(window.wpData.youtube_tag_id, 10);
              return isPostYoutube(this.post, ytID);
@@ -76,7 +78,7 @@
          isVideo() {
              const vidID = parseInt(window.wpData.video_tag_id, 10);
              return isVideo(this.post, vidID);
-         },
+         }
      }
  }
 </script>

@@ -43,3 +43,12 @@ export const samplePoints = (x_max, y_max) => {
 
     return pds.fill();
 };
+
+export const getRandomColor = () => {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};

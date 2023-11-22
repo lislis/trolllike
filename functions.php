@@ -24,6 +24,14 @@ register_meta('post', 'video_link', [
     'show_in_rest'   => true,
 ]);
 
+register_meta('post', 'external_link', [
+    'object_subtype' => 'post', // Limit to a post type.
+    'type'           => 'string',
+    'description'    => 'Link to external site',
+    'single'         => true,
+    'show_in_rest'   => true,
+]);
+
 
 function add_cors_http_header(){
   header("Access-Control-Allow-Origin: *");

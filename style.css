@@ -21,8 +21,7 @@ html, body {
 .single-view {
   position: absolute;
   z-index: 95;
-  //width: 80vw;
-  width: 60vw;
+  width: 88vw;
   padding: 1vw;
   background: rgba(255, 255, 255, 0.5);
   top: 0;
@@ -34,6 +33,14 @@ html, body {
   border-radius: 10px;
   //overflow: scroll;
 }
+
+@media (min-width: 800px) {
+  .single-view {
+    width: 60vw;
+  }
+}
+
+
 .single-view  img {
   position: absolute;
   top: 0;
@@ -226,4 +233,11 @@ html, body {
 
  .magic-window.is-active {
    background-color: #ff1493;
+ }
+
+ .external-link {
+   font-size: 6vmin;
+   color: #ff1493;
+   line-height: 1.45;
+   text-decoration: underline;
  }
