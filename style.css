@@ -106,6 +106,7 @@ html, body {
 .single-content-wrapper {
   overflow: scroll;
   height: 100%;
+  padding-right: 1em;
 }
 
 
