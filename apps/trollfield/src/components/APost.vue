@@ -20,10 +20,16 @@
                   width="1.5" :height="`${height / width * 1.5}`"></a-image>
 
         <template v-else>
-            <a-text :post-url="post.slug"
+
+            <a-text
                     :value="post.title.rendered"
                     :text="textAttr"
-                    position="-0.65 0 0.1"></a-text>
+                    position="-0.65 0 0.1">
+                <a-entity
+                    :post-url="post.slug"
+                    position="2.1 0.5 0"
+                    geometry="primitive: plane; width: 4.3; height: 2.5;" material="visible: false" ></a-entity>
+            </a-text>
         </template>
     </a-entity>
 </template>
@@ -57,7 +63,7 @@
      },
      computed: {
          textAttr() {
-             return `font: exo2bold;side: double; wrapCount: 15; color: ${getRandomColor()}`;
+             return `side: double; wrapCount: 13; baseline: bottom; color: ${getRandomColor()}`;
          },
          isYouTube() {
              const ytID = parseInt(window.wpData.youtube_tag_id, 10);

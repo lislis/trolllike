@@ -41,7 +41,7 @@ html, body {
 }
 
 
-.single-view  img {
+.single-view .wp-block-image img {
   position: absolute;
   top: 0;
   left: 0;
