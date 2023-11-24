@@ -217,22 +217,25 @@ html, body {
    height: 100%;
  }
 
- .magic-window {
+ .ui {
    position: absolute;
+   z-index: 99;
+   bottom: 1em;
+   right: 1em;
+ }
+
+ .ui-button {
    background: white;
    display: block;
    border-radius: 50%;
    text-align: center;
-   bottom: 1em;
-   z-index: 99;
-   right: 1em;
    width: 3em;
    height: 3em;
    cursor: pointer;
    border: 3px solid black;
  }
 
- .magic-window.is-active {
+ .ui-button.is-active {
    background-color: #ff1493;
  }
 
