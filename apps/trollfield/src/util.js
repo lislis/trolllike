@@ -1,12 +1,9 @@
 import PerlinNoise from 'perlin-noise-2d';
 import { points } from '@/data.js';
 
-// use this to generate new points
-// let new_points = samplePoints();
+const x_max = 50;
+const y_max = 50;
 
-// This can be used to copy the points and then paste them
-// to @/data.js
-window.points = points;
 
 
 export const isPostYoutube = (post, tagId) => {
@@ -47,9 +44,6 @@ export const postVideoUrl = (post) => {
 
 
 export const samplePoints = () => {
-    const x_max = 70;
-    const y_max = 70;
-
     let pds = new FastPoissonDiskSampling({
         shape: [x_max, y_max],
         radius: 3,
@@ -58,6 +52,13 @@ export const samplePoints = () => {
 
     return pds.fill();
 };
+
+// use this to generate new points
+//let points = samplePoints();
+// This can be used to copy the points and then paste them
+// to @/data.js
+window.points = points;
+
 
 export const getRandomColor = () => {
     var letters = '0123456789ABCDEF';
@@ -90,8 +91,8 @@ export const assembleArchive = (entries, startIndex) => {
             x.rot = Math.ceil((Math.random() * 2 - 1) * 35);
             return x;
         }).map(x => {
-          //  x.position[0] = x.position[0] - (x_max/2.0);
-          //  x.position[1] = x.position[1] - (y_max/2.0);
+            x.position[0] = x.position[0] - (x_max/2.0);
+            x.position[1] = x.position[1] - (y_max/2.0);
             return x;
         }).filter(x => {
             return !isNaN(x.position[0]) && !isNaN(x.position[1]);

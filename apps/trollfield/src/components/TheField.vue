@@ -118,7 +118,7 @@
              }
 
 
-             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 4.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 20; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #c5a543; grid: 1x1; gridColor: #ffffff`;
+             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 20; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #c5a543; grid: 1x1; gridColor: #ffffff`;
          }
      }
  }
