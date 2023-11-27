@@ -1,7 +1,7 @@
 <template>
     <a-entity :post-url="post.slug"
               cursor-listener
-              :position="`${post.position[0]} ${post.height} ${post.position[1]}`" :rotation="`0 ${post.rot} 0`">
+              :position="`${posX} ${post.height} ${posZ}`" :rotation="`0 ${post.rot} 0`">
 
         <a-image  v-if="isYouTube"
                   :post-url="post .slug"
@@ -84,6 +84,12 @@
          isVideo() {
              const vidID = parseInt(window.wpData.video_tag_id, 10);
              return isVideo(this.post, vidID);
+         },
+         posX() {
+             return this.post.position[0];
+         },
+         posZ() {
+             return this.post.position[1];
          }
      }
  }

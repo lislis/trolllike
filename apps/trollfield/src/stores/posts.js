@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia'
 
+import { assembleArchive } from '@/util.js';
+
+
 export const usePostsStore = defineStore('posts', {
     state: () => {
         return {
@@ -28,7 +31,8 @@ export const usePostsStore = defineStore('posts', {
     },
     actions: {
         addPosts(more) {
-            let all = this.posts.concat(more);
+            let enhanced = assembleArchive(more, this.posts.length);
+            let all = this.posts.concat(enhanced);
             this.posts = all;
         },
         addTags(more) {
