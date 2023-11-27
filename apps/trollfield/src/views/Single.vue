@@ -30,7 +30,7 @@
          return { store }
      },
      created() {
-         window.setTimeout(() => {this.showPDF()}, 100);
+         window.setTimeout(() => { this.showPDF() }, 100);
      },
      computed: {
          item() {

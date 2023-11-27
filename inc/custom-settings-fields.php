@@ -4,6 +4,12 @@ function frontpage_section_description() {
     echo '<p>IDs von Kategorien und Tags mit spezieller Bedeutung</p>';
 }
 
+function about_page_id_display() { ?>
+    <input type="text" name="about_page_id" id=""about_page_id" value="<?php echo get_option('about_page_id'); ?>" />
+<?php
+}
+
+
 function main_filter_cat_display() { ?>
     <input type="text" name="main_filter_cat" id="main_filter_cat" value="<?php echo get_option('main_filter_cat'); ?>" />
 <?php
@@ -36,11 +42,15 @@ function trolllike_theme_settings(){
     add_settings_section( 'front_page', 'Haupteinstellungen',
                           'frontpage_section_description','theme-options');
 
+    add_settings_field("about_page_id", "ID der About-Seite", "about_page_id_display", "theme-options", "front_page");
+    register_setting( 'theme-options-grp', 'about_page_id');
+
     add_settings_field("main_filter_cat", "Hauptcategorie für Archiv", "main_filter_cat_display", "theme-options", "front_page");
     register_setting( 'theme-options-grp', 'main_filter_cat');
 
 
-    add_settings_field("youtube_tag", "Tag-ID für YouTube", "youtube_tag_display", "theme-options", "front_page");
+    add_settings_field("youtube_tag", "Tag-ID für YouTube", "youtube_tag_display", "theme-options", "front_pa
+    ge");
     register_setting( 'theme-options-grp', 'youtube_tag');
 
     add_settings_field("video_tag", "Tag-ID für Video", "video_tag_display", "theme-options", "front_page");

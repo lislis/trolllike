@@ -20,10 +20,6 @@
                       :look-controls="magicWindow"
                       position="0 1.6 0">
                 <a-entity cursor="rayOrigin:mouse"
-                          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-                          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-                          animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-
                           position="0 0 -1"
                           material="color: black; shader: flat">
                 </a-entity>
@@ -31,7 +27,7 @@
         </a-entity>
 
         <a-light type="ambient" color="#ccc" visible="false"></a-light>
-        <a-light color="#ddf" distance="100" visible="true" intensity="0.4" type="point"></a-light>
+        <a-light color="#ddf" distance="100" :visible="isPointOn" intensity="0.4" type="point"></a-light>
         <a-light color="#ddf" position="3 10 -10" distance="50" visible="false" intensity="0.4" type="point"></a-light>
 
 
@@ -47,26 +43,33 @@
         Loading
     </div>
 
-    <div class="ui">
-        <MagicWindowButton @magicWindowChanged="toggleMW" />
+    <div class="ui ui-bottom">
+        <MagicWindowButton v-if="isGyroDevice" @magicWindowChanged="toggleMW" />
         <DaytimeButton v-if="!isRagnarok" @daytimeChanged="toggleDT" />
         <RagnarokButton @rChanged="toggleR" />
+    </div>
+
+    <div class="ui ui-top">
+        <AboutButton />
     </div>
 </template>
 
 <script>
- import nipplejs from "nipplejs/dist/nipplejs.js";
+ //import nipplejs from "nipplejs/dist/nipplejs.js";
  import { usePostsStore } from '@/stores/posts'
  import APost from '@/components/APost.vue';
  import AAsset from '@/components/AAsset.vue';
  import MagicWindowButton from '@/components/MagicWindowButton.vue';
  import DaytimeButton from '@/components/DaytimeButton.vue';
  import RagnarokButton from '@/components/RagnarokButton.vue';
+ import AboutButton from '@/components/AboutButton.vue';
+ import { isGyroDevice } from '@/util';
 
  export default {
      name: "TheField",
      components: {APost, AAsset,
-                  MagicWindowButton, DaytimeButton, RagnarokButton},
+                  MagicWindowButton, DaytimeButton,
+                  RagnarokButton, AboutButton},
      created() {
          isLoading: false;
          //console.log(this.points);
@@ -75,7 +78,8 @@
          return {
              isMagicWindow: false,
              isDay: true,
-             isRagnarok: false
+             isRagnarok: false,
+             isPointOn: true,
          }
      },
      setup() {
@@ -106,10 +110,12 @@
                      skycolor = '#1c71d8';
                      horizoncolor = '#99c1f1';
                      fog = 0.4;
+                     this.isPointOn = true;
                  } else {
                      skycolor = '#192636';
                      horizoncolor = '#05111f';
                      fog = 0.9;
+                     this.isPointOn = false;
                  }
              } else {
                  skycolor = '#a51d2d';

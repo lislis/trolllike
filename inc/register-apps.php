@@ -47,7 +47,7 @@ function troll_scripts() {
                 $pos  = strpos($meta, '=');
                 $id = substr($meta, $pos + 1);
                 $url = thumbnail_url($id, 'youtube');
-                
+
                 $urls[$post->ID] = $url;
             }
         }
@@ -64,6 +64,7 @@ function troll_scripts() {
                 'video_tag_id' => get_option('video_tag'),
                 'link_tag_id' => get_option('link_tag'),
                 'text_tag_id' => get_option('text_tag'),
+                'about_page_id' => get_option('about_page_id'),
                 'youtube_urls' => $urls,
             )
         );

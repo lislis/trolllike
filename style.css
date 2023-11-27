@@ -220,8 +220,16 @@ html, body {
  .ui {
    position: absolute;
    z-index: 99;
-   bottom: 1em;
+
    right: 1em;
+ }
+
+ .ui-bottom {
+   bottom: 1em;
+ }
+
+ .ui-top {
+   top: 1em;
  }
 
  .ui-button {

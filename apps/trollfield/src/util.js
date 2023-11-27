@@ -98,3 +98,13 @@ export const assembleArchive = (entries, startIndex) => {
             return !isNaN(x.position[0]) && !isNaN(x.position[1]);
         });
 };
+
+
+export const isGyroDevice = () => {
+    let gyroPresent = false;
+    window.addEventListener("devicemotion", function(event){
+        if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
+            gyroPresent = true;
+    });
+    return gyroPresent;
+}
