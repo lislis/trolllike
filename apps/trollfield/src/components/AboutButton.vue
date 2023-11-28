@@ -1,5 +1,5 @@
 <template>
-    <button class="about-button ui-button"
+    <button v-if="isDone" class="about-button ui-button"
             @click="url"
             :class="{ 'is-active': isOpen}">
             <span class="a11y-hidden">Open about page</span>
@@ -7,12 +7,30 @@
     </button>
 </template>
 <script>
+ import { usePostsStore } from '@/stores/posts'
+
 export default {
      name: "AboutButton",
      data() {
          return {
              isOpen: false,
+             isDone: false,
          }
+     },
+     setup() {
+         const store = usePostsStore();
+         return { store }
+     },
+     created() {
+         this.isDone = false;
+         fetch(`${window.wpData.rest_url}/wp/v2/pages/${window.wpData.about_page_id}`)
+             .then(d => d.json())
+             .then(d => {
+                 this.store.setAboutPage(d);
+                 this.isDone = true;
+             }).catch(e => {
+                 console.log("Error", e);
+             });
      },
      methods: {
          url() {

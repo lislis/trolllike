@@ -1,7 +1,6 @@
 <template>
     <a-scene v-if="isFinal"
              vr-mode-ui="enabled: true"
-
              loading-screen="dotsColor: black; backgroundColor: white" >
         <a-assets>
             <img src="/sun.png" id="sun">

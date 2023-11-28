@@ -12,18 +12,18 @@ function troll_scripts() {
         wp_enqueue_script('poisson-disk');
 
 
-        wp_register_script('aframe-fork',
-                           'https://cdn.jsdelivr.net/gh/akbartus/A-Frame-Component-Postprocessing/dist/aframe.min.js',
-                           array(),
-                           false, false);
-        wp_enqueue_script('aframe-fork');
+        /* wp_register_script('aframe-fork',
+         *                    'https://cdn.jsdelivr.net/gh/akbartus/A-Frame-Component-Postprocessing/dist/aframe.min.js',
+         *                    array(),
+         *                    false, false);
+         * wp_enqueue_script('aframe-fork');
 
-        wp_register_script('aframe-post-plugin',
-                           'https://cdn.jsdelivr.net/gh/akbartus/A-Frame-Component-Postprocessing/dist/post-processing.min.js',
-                           array('aframe-fork'),
-                           false, false);
-        wp_enqueue_script('aframe-post-plugin');
-
+         * wp_register_script('aframe-post-plugin',
+         *                    'https://cdn.jsdelivr.net/gh/akbartus/A-Frame-Component-Postprocessing/dist/post-processing.min.js',
+         *                    array('aframe-fork'),
+         *                    false, false);
+         * wp_enqueue_script('aframe-post-plugin');
+         */
 
         /* wp_register_script('aframe',
          *                    get_stylesheet_directory_uri() .'/js/aframe.min.js',

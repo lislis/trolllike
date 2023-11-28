@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router/index'
 
 
-//import 'aframe/dist/aframe-master.js';
+import 'aframe/dist/aframe-master.js';
 
 import 'aframe-extras/dist/aframe-extras.min.js';
 import 'aframe-environment-component/dist/aframe-environment-component.min.js';

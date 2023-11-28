@@ -13,6 +13,7 @@ export const usePostsStore = defineStore('posts', {
                 isFinal: false,
                 current: null,
             },
+            about: null,
         };
     },
     getters: {
@@ -34,6 +35,9 @@ export const usePostsStore = defineStore('posts', {
         },
         pageState(state) {
             return state.page;
+        },
+        aboutPage(state) {
+            return state.about;
         }
     },
     actions: {
@@ -54,6 +58,19 @@ export const usePostsStore = defineStore('posts', {
         },
         setPageCurrent(num) {
             this.page.current = num;
+        },
+        setAboutPage(d) {
+            this.about = d;
+        },
+        async fetchAbout(url) {
+            return fetch(url)
+                .then(d => d.json())
+                .then(d => {
+                    this.about = d;
+                    return d;
+                }).catch(e => {
+                    console.log("Error", e);
+                });
         }
     },
 });
