@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div v-if="isLoading" style="text-align: center">
+        <LoadSpinner />
+    </div>
+    <div v-else>
         <TheField />
 
         <router-view></router-view>
@@ -7,48 +10,46 @@
 </template>
 
 <script>
+ import LoadSpinner from '@/components/LoadSpinner.vue';
  import TheField from "@/components/TheField.vue";
  import { usePostsStore } from "@/stores/posts.js";
 
  export default {
      name: "TrollfieldApp",
-     components: { TheField },
+     components: { TheField, LoadSpinner },
      setup() {
          const store = usePostsStore();
          return { store }
      },
      data() {
          return {
-             //isLoading: false
+             isLoading: false,
          }
      },
      async created() {
-         AFRAME.registerComponent('cursor-listener', {
-             init() {
-                 this.el.addEventListener('click', function (evt) {
-                     let slug = evt.target.attributes['post-url'];
-                     if (slug) {
-                         window.vueRouter.push(`/${slug.value}`);
-                     }
-                 });
-             }
-         });
+         this.isLoading = true;
 
+         this.store.setPageCurrent(1);
          this.fetchData(1);
          this.fetchTags();
      },
      methods: {
          fetchData(page) {
-             fetch(`${window.wpData.rest_url}/wp/v2/posts?per_page=50&page=${page}&_embed=true`)
+             fetch(`${window.wpData.rest_url}/wp/v2/posts?per_page=30&page=${page}&_embed=true`)
                  .then(resp => {
                      let currentPage = parseInt(resp.headers.get('x-wp-totalpages'), 10);
                      if (currentPage > page) {
                          this.fetchData(page+1);
+                         this.store.setPageCurrent(page+1);
                      }
                      return resp.json();
                  } )
                  .then(d => {
-                     console.log('pass', page, d)
+                     if (this.store.pageState.current == page) {
+                         this.isLoading = false;
+                         this.store.setPageFinalFlag(true);
+                     }
+
                      this.store.addPosts(d);
                  }).catch(e => {
                      console.log("Error here?", e);

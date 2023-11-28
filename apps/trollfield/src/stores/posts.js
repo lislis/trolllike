@@ -8,7 +8,11 @@ export const usePostsStore = defineStore('posts', {
         return {
             posts: [],
             tags: [],
-            currentFilter: null
+            currentFilter: null,
+            page: {
+                isFinal: false,
+                current: null,
+            },
         };
     },
     getters: {
@@ -28,6 +32,9 @@ export const usePostsStore = defineStore('posts', {
         allTags(state) {
             return state.tags;
         },
+        pageState(state) {
+            return state.page;
+        }
     },
     actions: {
         addPosts(more) {
@@ -41,6 +48,12 @@ export const usePostsStore = defineStore('posts', {
         },
         selectFilter(filter) {
             this.currentFilter = filter;
+        },
+        setPageFinalFlag(state) {
+            this.page.isFinal = state;
+        },
+        setPageCurrent(num) {
+            this.page.current = num;
         }
     },
 });

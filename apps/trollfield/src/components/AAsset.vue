@@ -42,6 +42,7 @@
              return isPostYoutube(this.post, ytID);
          },
          youTubeThumbnail() {
+             console.log(postYoutubeThumbnail(this.post), this.post.title.rendered);
              return postYoutubeThumbnail(this.post);
          },
          hasImage() {

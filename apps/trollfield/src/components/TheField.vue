@@ -1,6 +1,12 @@
 <template>
-    <a-scene v-if="store.allPosts.length != 0" vr-mode-ui="enabled: true">
+    <a-scene v-if="isFinal"
+             vr-mode-ui="enabled: true"
+
+             loading-screen="dotsColor: black; backgroundColor: white" >
         <a-assets>
+            <img src="/sun.png" id="sun">
+            <img src="/moon.png" id="moon">
+            <img src="/blacksun.png" id="blacksun">
             <AAsset v-for="(post, i) in store.allPosts"
                     :key="post.id"
                     :post="post">
@@ -9,12 +15,29 @@
 
         <a-entity :environment="environment"></a-entity>
 
+
+        <template v-if=isRagnarok>
+            <a-image src="#blacksun" position="-25 32 -21" rotation="60 67 29" scale="12 12 12">
+                <a-light color="#000000" distance="100" intensity="1.4" type="directional"></a-light>
+            </a-image>
+        </template>
+        <template v-else>
+        <a-image v-if="isDay" src="#sun" position="14 40 -6" rotation="69 -37 -92" scale="7 7 7">
+            <a-light color="#ffffff" distance="100" intensity="1.4" type="directional"></a-light>
+        </a-image>
+
+        <a-image v-if="!isDay" src="#moon" position="12 35 6" rotation="67 -146 156" scale="5 5 5">
+            <a-light color="#ffffff" distance="100" intensity="0.8" type="directional"></a-light>
+        </a-image>
+        </template>
+
+
+
         <!-- PLAYER -->
         <a-entity id="rig"
                   movement-controls="controls: keyboard, nipple"
                   nipple-controls="moveJoystickPosition: false"
-                  position="0 0 0"
-        >
+                  position="0 0 0">
             <a-entity camera
                       id="camera"
                       :look-controls="magicWindow"
@@ -28,8 +51,6 @@
 
         <a-light type="ambient" color="#ccc" visible="false"></a-light>
         <a-light color="#ddf" distance="100" :visible="isPointOn" intensity="0.4" type="point"></a-light>
-        <a-light color="#ddf" position="3 10 -10" distance="50" visible="false" intensity="0.4" type="point"></a-light>
-
 
         <a-entity position="0 0 0" id="all-posts">
         <APost  v-for="(post, i) in store.getPostsByCurrentFilter"
@@ -44,7 +65,7 @@
     </div>
 
     <div class="ui ui-bottom">
-        <MagicWindowButton v-if="isGyroDevice" @magicWindowChanged="toggleMW" />
+        <MagicWindowButton @magicWindowChanged="toggleMW" />
         <DaytimeButton v-if="!isRagnarok" @daytimeChanged="toggleDT" />
         <RagnarokButton @rChanged="toggleR" />
     </div>
@@ -55,7 +76,6 @@
 </template>
 
 <script>
- //import nipplejs from "nipplejs/dist/nipplejs.js";
  import { usePostsStore } from '@/stores/posts'
  import APost from '@/components/APost.vue';
  import AAsset from '@/components/AAsset.vue';
@@ -72,6 +92,13 @@
                   RagnarokButton, AboutButton},
      created() {
          isLoading: false;
+
+         /* window.setTimeout(() => {
+          *     document.querySelector("a-scene").addEventListener("loaded", () => {
+          *         AFRAME.registerSystem("postprocessing", window.postprocessingSystem);
+          *     });
+          * }, 3000);
+          */
          //console.log(this.points);
      },
      data() {
@@ -99,6 +126,9 @@
          }
      },
      computed: {
+         isFinal() {
+             return this.store.pageState.isFinal;
+         },
          magicWindow() {
              return `magicWindowTrackingEnabled: ${this.isMagicWindow}`;
          },
@@ -114,17 +144,17 @@
                  } else {
                      skycolor = '#192636';
                      horizoncolor = '#05111f';
-                     fog = 0.9;
+                     fog = 0.7;
                      this.isPointOn = false;
                  }
              } else {
                  skycolor = '#a51d2d';
                  horizoncolor = '#c01c28';
-                 fog = 0.9;
+                 fog = 0.8;
              }
 
 
-             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 20; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #c5a543; grid: 1x1; gridColor: #ffffff`;
+             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 20; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
          }
      }
  }
