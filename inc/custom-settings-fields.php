@@ -35,6 +35,11 @@ function text_tag_display() { ?>
 <?php
 }
 
+function document_tag_display() { ?>
+    <input type="text" name="document_tag" id="document_tag" value="<?php echo get_option('document_tag'); ?>" />
+<?php
+}
+
 
 
 function trolllike_theme_settings(){
@@ -61,6 +66,10 @@ function trolllike_theme_settings(){
 
     add_settings_field("text_tag", "Tag-ID für Text", "text_tag_display", "theme-options", "front_page");
     register_setting( 'theme-options-grp', 'text_tag');
+
+    add_settings_field("document_tag", "Tag-ID für Dokumente", "document_tag_display", "theme-options", "front_page");
+    register_setting( 'theme-options-grp', 'document_tag');
+
 
 }
 add_action('admin_init','trolllike_theme_settings');

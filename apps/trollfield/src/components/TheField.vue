@@ -3,9 +3,9 @@
              vr-mode-ui="enabled: true"
              loading-screen="dotsColor: black; backgroundColor: white" >
         <a-assets>
-            <img src="/sun.png" id="sun">
-            <img src="/moon.png" id="moon">
-            <img src="/blacksun.png" id="blacksun">
+            <img :src="whichPath('sun.png')" id="sun">
+            <img :src="whichPath('moon.png')" id="moon">
+            <img :src="whichPath('blacksun.png')" id="blacksun">
             <AAsset v-for="(post, i) in store.allPosts"
                     :key="post.id"
                     :post="post">
@@ -29,7 +29,6 @@
             <a-light color="#ffffff" distance="100" intensity="0.8" type="directional"></a-light>
         </a-image>
         </template>
-
 
 
         <!-- PLAYER -->
@@ -122,7 +121,15 @@
          },
          toggleR(state) {
              this.isRagnarok = state;
-         }
+         },
+         whichPath(path) {
+             let host = window.location.hostname;
+             if (host === 'localhost') {
+                 return `/${path}`;
+             } else {
+                 return `/wp-content/themes/trolllike/apps/trollfield/dist/${path}`;
+             }
+         },
      },
      computed: {
          isFinal() {

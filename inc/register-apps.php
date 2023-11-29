@@ -94,6 +94,7 @@ function troll_scripts() {
                 'video_tag_id' => get_option('video_tag'),
                 'link_tag_id' => get_option('link_tag'),
                 'text_tag_id' => get_option('text_tag'),
+                'document_tag_id' => get_option('document_tag'),
                 'about_page_id' => get_option('about_page_id'),
                 'youtube_urls' => $urls,
             )

@@ -8,6 +8,10 @@
             <h3 v-html="item.title.rendered" class="a11y-hidden"></h3>
             <a :href="item.meta.external_link" class="external-link" target="_blank" referrerpolicy="no-referrer">{{item.title.rendered}}</a>
         </div>
+        <div v-else-if="isDocument" class="single-content-wrapper">
+            <h3 v-html="item.title.rendered" class="a11y-hidden"></h3>
+            <a :href="item.meta.external_link" class="external-link" target="_blank" referrerpolicy="no-referrer">{{item.title.rendered}}</a>
+        </div>
         <div v-else-if="isText" class="single-content-wrapper">
             <h1 v-html="item.title.rendered"></h1>
             <div v-html="item.content.rendered"></div>
@@ -30,7 +34,7 @@
          return { store }
      },
      created() {
-         window.setTimeout(() => { this.showPDF() }, 100);
+         //window.setTimeout(() => { this.showPDF() }, 100);
      },
      computed: {
          item() {
@@ -38,14 +42,19 @@
          },
          isExternal() {
              const linkID = parseInt(window.wpData.link_tag_id, 10);
-             console.log(this.item.tags)
+            // console.log(this.item.tags)
              return this.item.tags.includes(linkID);
          },
          isText() {
              const textID = parseInt(window.wpData.text_tag_id, 10);
-             console.log(this.item.tags)
+           //  console.log(this.item.tags)
              return this.item.tags.includes(textID);
-         }
+         },
+         isDocument() {
+             const docID = parseInt(window.wpData.document_tag_id, 10);
+             console.log('is docuemnt', this.item.tags);
+             return this.item.tags.includes(docID);
+         },
      },
      methods: {
          showPDF() {

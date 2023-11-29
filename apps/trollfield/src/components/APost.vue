@@ -20,7 +20,6 @@
                   width="1.5" :height="`${height / width * 1.5}`"></a-image>
 
         <template v-else>
-
             <a-text
                     :value="post.title.rendered"
                     :text="textAttr"
