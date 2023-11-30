@@ -70,15 +70,20 @@ function troll_scripts() {
         $posts = get_posts(array('type' => 'post',
                                  'numberposts' => -1));
 
-        $urls = array();
+        $yt_urls = array();
+        $vid_urls = array();
         foreach ($posts as $post) {
             $meta = get_post_meta($post->ID, 'youtube_link', true);
+            $meta2 = get_post_meta($post->ID, 'video_link', true);
             if ($meta != "") {
                 $pos = strpos($meta, '=');
                 $id = substr($meta, $pos + 1);
                 $url = thumbnail_url($id, 'youtube');
-
-                $urls[$post->ID] = $url;
+                //print_r($post);
+                $yt_urls[$post->post_name] = $url;
+            }
+            if ($meta2 != "") {
+                $vid_urls[$post->post_name] = $meta2;
             }
         }
 
@@ -96,7 +101,8 @@ function troll_scripts() {
                 'text_tag_id' => get_option('text_tag'),
                 'document_tag_id' => get_option('document_tag'),
                 'about_page_id' => get_option('about_page_id'),
-                'youtube_urls' => $urls,
+                'youtube_urls' => $yt_urls,
+                'video_urls' => $vid_urls,
             )
         );
 

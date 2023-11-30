@@ -45,3 +45,5 @@ flycheck_*.el
 
 # directory configuration
 .dir-locals.el
+
+_config/wp-config.php

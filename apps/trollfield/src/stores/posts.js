@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 
 import { assembleArchive } from '@/util.js';
 
-
 export const usePostsStore = defineStore('posts', {
     state: () => {
         return {
@@ -19,6 +18,13 @@ export const usePostsStore = defineStore('posts', {
     getters: {
         allPosts(state) {
             return state.posts;
+        },
+        allPostsWithImage(state) {
+            // assuming every post has author and terms
+            // the ones with images have 3 entries here
+            return state.posts.filter(x => {
+                return Object.values(x['_embedded']).length >= 3;
+            });
         },
         getPostBySlug(state) {
             return (slug) => state.posts.find(x => x.slug === slug);

@@ -42,17 +42,14 @@
          },
          isExternal() {
              const linkID = parseInt(window.wpData.link_tag_id, 10);
-            // console.log(this.item.tags)
              return this.item.tags.includes(linkID);
          },
          isText() {
              const textID = parseInt(window.wpData.text_tag_id, 10);
-           //  console.log(this.item.tags)
              return this.item.tags.includes(textID);
          },
          isDocument() {
              const docID = parseInt(window.wpData.document_tag_id, 10);
-             console.log('is docuemnt', this.item.tags);
              return this.item.tags.includes(docID);
          },
      },

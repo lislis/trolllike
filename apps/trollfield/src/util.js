@@ -21,7 +21,7 @@ export const postImgUrl = (post) => {
 };
 
 export const postYoutubeThumbnail = (post) => {
-    const id = post.id;
+    const id = post.slug; // post.id;
     let str = '';
     // this is an object that's filled by wordpress
     if (window.wpData.youtube_urls[id]) {

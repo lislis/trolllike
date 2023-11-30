@@ -54,8 +54,7 @@ function trolllike_theme_settings(){
     register_setting( 'theme-options-grp', 'main_filter_cat');
 
 
-    add_settings_field("youtube_tag", "Tag-ID für YouTube", "youtube_tag_display", "theme-options", "front_pa
-    ge");
+    add_settings_field("youtube_tag", "Tag-ID für YouTube", "youtube_tag_display", "theme-options", "front_page");
     register_setting( 'theme-options-grp', 'youtube_tag');
 
     add_settings_field("video_tag", "Tag-ID für Video", "video_tag_display", "theme-options", "front_page");

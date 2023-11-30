@@ -4,7 +4,7 @@
               :position="`${posX} ${post.height} ${posZ}`" :rotation="`0 ${post.rot} 0`">
 
         <a-image  v-if="isYouTube"
-                  :post-url="post .slug"
+                  :post-url="post.slug"
                   :src="`#${post.slug}`"
                   width="2.2" height="1.5"></a-image>
 

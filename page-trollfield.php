@@ -14,7 +14,7 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <title>Trollfeld</title>
-        <link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
+        <link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/apps/trollfield/dist/favicon.ico" />
 
         <?php wp_head(); ?>
     </head>

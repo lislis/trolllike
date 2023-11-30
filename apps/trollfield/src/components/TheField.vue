@@ -6,17 +6,43 @@
             <img :src="whichPath('sun.png')" id="sun">
             <img :src="whichPath('moon.png')" id="moon">
             <img :src="whichPath('blacksun.png')" id="blacksun">
-            <AAsset v-for="(post, i) in store.allPosts"
+            <a-asset-item id="wolf"
+                          response-type="arraybuffer"
+                          :src="whichPath('assets/toon_mutant_wolf.glb')"></a-asset-item>
+
+
+            <AAsset v-for="(post, i) in store.allPostsWithImage"
                     :key="post.id"
                     :post="post">
             </AAsset>
+
+            <img v-for="([slug, url], key) in youtube_urls"
+                 :id="slug"
+                 :src="url"
+                 crossorigin="anonymous">
+
+            <video v-for="([slug, url], key) in video_urls"
+                   :id="slug"
+                   :src="url"
+                   webkit-playsinline
+                   playsinline
+                   crossorigin="anonymous"></video>
+
         </a-assets>
 
         <a-entity :environment="environment"></a-entity>
 
+        <a-entity v-if="isRagnarok" id="fenris"
+                  position="24 0 -58"
+                  rotation="0 -90 0"
+                  scale="15 15 15"
+                  animation-mixer="clip: walk; loop: repeat; timeScale: 1.0; repetitions: Infinity"
+                  gltf-model="#wolf">
+        </a-entity>
+
 
         <template v-if=isRagnarok>
-            <a-image src="#blacksun" position="-25 32 -21" rotation="60 67 29" scale="12 12 12">
+            <a-image src="#blacksun" position="-60 32 -21" rotation="42 74 39" scale="12 12 12">
                 <a-light color="#000000" distance="100" intensity="1.4" type="directional"></a-light>
             </a-image>
         </template>
@@ -29,7 +55,6 @@
             <a-light color="#ffffff" distance="100" intensity="0.8" type="directional"></a-light>
         </a-image>
         </template>
-
 
         <!-- PLAYER -->
         <a-entity id="rig"
@@ -160,7 +185,13 @@
              }
 
 
-             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 20; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
+             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 32; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
+         },
+         youtube_urls() {
+             return Object.entries(window.wpData.youtube_urls);
+         },
+         video_urls() {
+             return Object.entries(window.wpData.video_urls);
          }
      }
  }
