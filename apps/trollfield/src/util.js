@@ -13,7 +13,8 @@ export const isPostYoutube = (post, tagId) => {
 
 export const hasPostImage = (post) => {
     return (post['_embedded']['wp:featuredmedia'] &&
-            post['_embedded']['wp:featuredmedia'].length >= 1);
+            post['_embedded']['wp:featuredmedia'].length >= 1 &&
+            !post['_embedded']['wp:featuredmedia'][0]['code']);
 };
 
 export const postImgUrl = (post) => {

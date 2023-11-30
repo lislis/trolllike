@@ -1,5 +1,5 @@
 <template>
-    <img if="hasImage"
+    <img v-if="hasImage"
          :id="post.slug"
          :src="imgUrl"
          crossorigin="anonymous">

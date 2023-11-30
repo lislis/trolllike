@@ -3,13 +3,12 @@
              vr-mode-ui="enabled: true"
              loading-screen="dotsColor: black; backgroundColor: white" >
         <a-assets>
-            <img :src="whichPath('sun.png')" id="sun">
-            <img :src="whichPath('moon.png')" id="moon">
-            <img :src="whichPath('blacksun.png')" id="blacksun">
+            <img :src="whichPath('assets/sun.png')" id="sun">
+            <img :src="whichPath('assets/moon.png')" id="moon">
+            <img :src="whichPath('assets/blacksun.png')" id="blacksun">
             <a-asset-item id="wolf"
                           response-type="arraybuffer"
                           :src="whichPath('assets/toon_mutant_wolf.glb')"></a-asset-item>
-
 
             <AAsset v-for="(post, i) in store.allPostsWithImage"
                     :key="post.id"
@@ -32,19 +31,25 @@
 
         <a-entity :environment="environment"></a-entity>
 
-        <a-entity v-if="isRagnarok" id="fenris"
-                  position="24 0 -58"
+
+        <a-entity :id="mountains"  position="0 -1 0"
                   rotation="0 -90 0"
                   scale="15 15 15"
-                  animation-mixer="clip: walk; loop: repeat; timeScale: 1.0; repetitions: Infinity"
-                  gltf-model="#wolf">
+                  gltf-model="url(/assets/mountains.glb)">
         </a-entity>
-
 
         <template v-if=isRagnarok>
             <a-image src="#blacksun" position="-60 32 -21" rotation="42 74 39" scale="12 12 12">
                 <a-light color="#000000" distance="100" intensity="1.4" type="directional"></a-light>
             </a-image>
+
+            <a-entity id="fenris"
+                      position="20 0 -58"
+                      rotation="0 -90 0"
+                      scale="15 15 15"
+                      animation-mixer="clip: walk; loop: repeat; timeScale: 1.0; repetitions: Infinity"
+                      gltf-model="#wolf">
+            </a-entity>
         </template>
         <template v-else>
         <a-image v-if="isDay" src="#sun" position="14 40 -6" rotation="69 -37 -92" scale="7 7 7">
@@ -75,11 +80,12 @@
         <a-light type="ambient" color="#ccc" visible="false"></a-light>
         <a-light color="#ddf" distance="100" :visible="isPointOn" intensity="0.4" type="point"></a-light>
 
+
         <a-entity position="0 0 0" id="all-posts">
-        <APost  v-for="(post, i) in store.getPostsByCurrentFilter"
-                :key="post.id"
-                :post="post">
-        </APost>
+            <APost  v-for="(post, i) in store.getPostsByCurrentFilter"
+                    :key="post.id"
+                    :post="post">
+            </APost>
         </a-entity>
 
     </a-scene>
@@ -184,8 +190,7 @@
                  fog = 0.8;
              }
 
-
-             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 32; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
+             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 18; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
          },
          youtube_urls() {
              return Object.entries(window.wpData.youtube_urls);

@@ -20,10 +20,10 @@ export const usePostsStore = defineStore('posts', {
             return state.posts;
         },
         allPostsWithImage(state) {
-            // assuming every post has author and terms
-            // the ones with images have 3 entries here
+            // assuming every post hasterms
+            // the ones with images have 2 entries here
             return state.posts.filter(x => {
-                return Object.values(x['_embedded']).length >= 3;
+                return Object.values(x['_embedded']).length >= 2;
             });
         },
         getPostBySlug(state) {

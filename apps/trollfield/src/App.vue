@@ -35,7 +35,7 @@
      },
      methods: {
          fetchData(page) {
-             fetch(`${window.wpData.rest_url}/wp/v2/posts?per_page=30&page=${page}&_embed=true`)
+             fetch(`${window.wpData.rest_url}/wp/v2/posts?per_page=30&page=${page}&_embed=wp:term,wp:featuredmedia`)
                  .then(resp => {
                      let currentPage = parseInt(resp.headers.get('x-wp-totalpages'), 10);
                      if (currentPage > page) {
