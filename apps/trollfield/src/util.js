@@ -18,7 +18,13 @@ export const hasPostImage = (post) => {
 };
 
 export const postImgUrl = (post) => {
-    return post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['source_url'];
+    let medium = post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['medium'];
+    let medium_large = post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['medium_large'];
+    if (medium_large) {
+        return medium_large['source_url'];
+    } else {
+        return medium['source_url'];
+    }
 };
 
 export const postYoutubeThumbnail = (post) => {

@@ -35,7 +35,7 @@
         <a-entity :id="mountains"  position="0 -1 0"
                   rotation="0 -90 0"
                   scale="15 15 15"
-                  gltf-model="url(/assets/mountains.glb)">
+                  :gltf-model="mountainUrl">
         </a-entity>
 
         <template v-if=isRagnarok>
@@ -168,6 +168,9 @@
          },
          magicWindow() {
              return `magicWindowTrackingEnabled: ${this.isMagicWindow}`;
+         },
+         mountainUrl() {
+             return `url(${this.whichPath('assets/mountains.glb')})`;
          },
          environment() {
              let skycolor, horizoncolor, fog;
