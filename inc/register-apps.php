@@ -92,7 +92,8 @@ function troll_scripts() {
             'wpData',
             array(
                 'template_directory_uri' => get_stylesheet_directory_uri(), // child theme directory path.
-                'rest_url' => untrailingslashit( esc_url_raw( rest_url() ) ),
+                //'rest_url' => untrailingslashit( esc_url_raw( rest_url() ) ),
+                'rest_url' => get_site_url() . '/index.php/wp-json',
                 'base_url' => get_site_url(),
                 'main_filter_cat' => get_option('main_filter_cat'),
                 'youtube_tag_id' => get_option('youtube_tag'),
