@@ -6,11 +6,11 @@
         </router-link>
         <div v-if="isExternal" class="single-content-wrapper">
             <h3 v-html="item.title.rendered" class="a11y-hidden"></h3>
-            <a :href="item.meta.external_link" class="external-link" target="_blank" referrerpolicy="no-referrer">{{item.title.rendered}}</a>
+            <a :href="item.meta.external_link" class="external-link" target="_blank" referrerpolicy="no-referrer" v-html="item.title.rendered"></a>
         </div>
         <div v-else-if="isDocument" class="single-content-wrapper">
             <h3 v-html="item.title.rendered" class="a11y-hidden"></h3>
-            <a :href="item.meta.external_link" class="external-link" target="_blank" referrerpolicy="no-referrer">{{item.title.rendered}}</a>
+            <a :href="item.meta.external_link" class="external-link" target="_blank" referrerpolicy="no-referrer" v-html="item.title.rendered"></a>
         </div>
         <div v-else-if="isText" class="single-content-wrapper">
             <h1 v-html="item.title.rendered"></h1>

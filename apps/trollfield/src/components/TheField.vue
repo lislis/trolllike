@@ -29,13 +29,19 @@
 
         </a-assets>
 
-        <a-entity :environment="environment"></a-entity>
+        <a-entity :environment="environment" visible="true"></a-entity>
 
 
-        <a-entity :id="mountains"  position="0 -1 0"
+        <a-entity id="mountains"  position="0 -1 0"
                   rotation="0 -90 0"
                   scale="15 15 15"
                   :gltf-model="mountainUrl">
+        </a-entity>
+
+        <a-entity id="forest"  position="-11 -0.1 14"
+                  rotation="0 60 0"
+                  scale="10 10 10"
+                  :gltf-model="forestUrl">
         </a-entity>
 
         <template v-if=isRagnarok>
@@ -77,7 +83,7 @@
             </a-entity>
         </a-entity>
 
-        <a-light type="ambient" color="#ccc" visible="false"></a-light>
+        <a-light type="ambient" color="#ccc" visible="true"></a-light>
         <a-light color="#ddf" distance="100" :visible="isPointOn" intensity="0.4" type="point"></a-light>
 
 
@@ -170,7 +176,10 @@
              return `magicWindowTrackingEnabled: ${this.isMagicWindow}`;
          },
          mountainUrl() {
-             return `url(${this.whichPath('assets/mountains.glb')})`;
+             return `url(${this.whichPath('assets/mountains2.glb')})`;
+         },
+         forestUrl() {
+             return `url(${this.whichPath('assets/forest.glb')})`;
          },
          environment() {
              let skycolor, horizoncolor, fog;
@@ -193,7 +202,7 @@
                  fog = 0.8;
              }
 
-             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: trees; dressingAmount: 18; dressingColor: #888b1d; dressingScale: 1; dressingVariance: [object Object]; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
+             return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: none; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
          },
          youtube_urls() {
              return Object.entries(window.wpData.youtube_urls);
