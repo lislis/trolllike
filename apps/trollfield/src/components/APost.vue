@@ -3,7 +3,13 @@
               cursor-listener
               :position="`${posX} ${post.height} ${posZ}`" :rotation="`0 ${post.rot} 0`">
 
-        <a-image  v-if="isYouTube"
+
+        <a-image  v-if="hasImage"
+                  :post-url="post.slug"
+                  :src="`#${post.slug}`"
+                  width="1.5" :height="`${height / width * 1.5}`"></a-image>
+
+        <a-image  v-else-if="isYouTube"
                   :post-url="post.slug"
                   :src="`#${post.slug}`"
                   width="2.2" height="1.5"></a-image>
@@ -13,11 +19,6 @@
                   :src="`#${post.slug}`"
                   :width="videoWidth" :height="videoHeight"
                   autoplay loop="true"></a-video>
-
-        <a-image  v-else-if="hasImage"
-                  :post-url="post.slug"
-                  :src="`#${post.slug}`"
-                  width="1.5" :height="`${height / width * 1.5}`"></a-image>
 
         <template v-else>
             <a-text

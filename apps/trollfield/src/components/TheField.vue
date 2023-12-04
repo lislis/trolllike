@@ -19,14 +19,6 @@
                  :id="slug"
                  :src="url"
                  crossorigin="anonymous">
-
-            <video v-for="([slug, url], key) in video_urls"
-                   :id="slug"
-                   :src="url"
-                   webkit-playsinline
-                   playsinline
-                   crossorigin="anonymous"></video>
-
         </a-assets>
 
         <a-entity :environment="environment" visible="true"></a-entity>
