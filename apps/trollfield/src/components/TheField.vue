@@ -93,13 +93,14 @@
     </div>
 
     <div class="ui ui-bottom">
-        <MagicWindowButton @magicWindowChanged="toggleMW" />
         <DaytimeButton v-if="!isRagnarok" @daytimeChanged="toggleDT" />
         <RagnarokButton @rChanged="toggleR" />
+        <MagicWindowButton @magicWindowChanged="toggleMW" />
+        <AboutButton />
     </div>
 
     <div class="ui ui-top">
-        <AboutButton />
+
     </div>
 </template>
 

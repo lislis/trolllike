@@ -36,7 +36,7 @@ html, body {
 
 @media (min-width: 800px) {
   .single-view {
-    width: 55vw;
+    width: 50vw;
   }
 }
 
@@ -113,25 +113,20 @@ html, body {
 .filter {
   position: absolute;
   z-index: 97;
-  top: 0;
+  //top: 0;
   bottom: 0;
   left: 0;
-  width: 20em;
+  right: 0;
+  width: 100%;
   padding: 1em;
   background-color: transparent;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-  transform: translateX(-7em);
+  align-items: flex-end;
+  //transform: translateY(7em);
   transition: background-color 200ms ease, transform 200ms ease;
   height: 0;
-}
-
-.filter.is-open  {
-  background-color: rgba(255, 255, 255, 0.3);
-  height: 100vh;
-  transform: translateX(0);
 }
 
 .filter-toggle {
@@ -145,13 +140,29 @@ html, body {
   border: none;
   cursor: pointer;
   border: solid 3px black;
+  //transform: translateY(-8em);
 }
 
+
+.filter.is-open  {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 30vh;
+//  transform: translateY(0);
+}
+
+.filter.is-open .filter-toggle {
+  align-self: center;
+ // transform: translateY(0);
+}
+
+
 .filter-inner {
-  margin-top: 1em;
+  //margin-top: 1em;
   overflow: scroll;
   scrollbar-color: black black;
   scrollbar-width: none;
+  margin-left: 2em;
+  height: 100%;
 }
 
 .filter-menu {
@@ -160,7 +171,7 @@ html, body {
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-  padding-bottom: 2em;
+  //padding-bottom: 2em;
 }
 
 .filter-tag {
