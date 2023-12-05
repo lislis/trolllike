@@ -36,7 +36,7 @@ html, body {
 
 @media (min-width: 800px) {
   .single-view {
-    width: 60vw;
+    width: 55vw;
   }
 }
 
@@ -206,7 +206,7 @@ html, body {
    border-radius: 50%;
    text-align: center;
    top: -1.5em;
-   z-index: 99;
+   z-index: 90;
    right: -1.5em;
    border: 3px solid black;
  }
@@ -220,7 +220,7 @@ html, body {
 
  .ui {
    position: absolute;
-   z-index: 99;
+   z-index: 89;
    right: 1em;
  }
 
