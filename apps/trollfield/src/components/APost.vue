@@ -96,7 +96,7 @@
              return this.post.position[1];
          },
          opacity() {
-             return this.isRagnarok ? 0.5 : 1.0;
+             return this.isRagnarok ? 0.2 : 1.0;
          }
      }
  }

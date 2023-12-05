@@ -42,7 +42,7 @@
             </a-image>
 
             <a-entity id="fenris"
-                      position="20 0 -58"
+                      position="25 0 -25"
                       rotation="0 -90 0"
                       scale="15 15 15"
                       animation-mixer="clip: walk; loop: repeat; timeScale: 1.0; repetitions: Infinity"
@@ -79,7 +79,7 @@
         <a-light color="#ddf" distance="100" :visible="isPointOn" intensity="0.4" type="point"></a-light>
 
 
-        <a-entity position="6.76 0 15" id="all-posts">
+        <a-entity position="6.76 0 21" id="all-posts">
             <APost  v-for="(post, i) in store.getPostsByCurrentFilter"
                     :key="post.id"
                     :post="post"
@@ -193,7 +193,7 @@
              } else {
                  skycolor = '#a51d2d';
                  horizoncolor = '#c01c28';
-                 fog = 0.8;
+                 fog = 0.9;
              }
 
              return `preset: checkerboard; active: true; seed: 8; skyType: gradient; skyColor:  ${skycolor}; horizonColor: ${horizoncolor}; fog: ${fog}; lightPosition: [object Object]; ground: noise; groundYScale: 1.18; groundTexture: squares; groundColor: #252525; groundColor2: #111111; dressing: none; gridColor: #333333; grid: 1x1; gridColor: #ffffff`;
