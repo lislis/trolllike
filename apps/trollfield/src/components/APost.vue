@@ -7,23 +7,27 @@
         <a-image  v-if="hasImage"
                   :post-url="post.slug"
                   :src="`#${post.slug}`"
+                  :opacity="opacity"
                   width="1.5" :height="`${height / width * 1.5}`"></a-image>
 
         <a-image  v-else-if="isYouTube"
                   :post-url="post.slug"
                   :src="`#${post.slug}`"
+                  :opacity="opacity"
                   width="2.2" height="1.5"></a-image>
 
         <a-video  v-else-if="isVideo"
                   :post-url="post.slug"
                   :src="`#${post.slug}`"
+                  :opacity="opacity"
                   :width="videoWidth" :height="videoHeight"
                   autoplay loop="true"></a-video>
 
         <template v-else>
             <a-text
                     :value="post.title.rendered"
-                    :text="textAttr"
+                :text="textAttr"
+                :opacity="opacity"
                     position="-0.65 0 0.1">
                 <a-entity
                     :post-url="post.slug"
@@ -44,7 +48,7 @@
 
  export default {
      name: "a-post",
-     props: ['post'],
+     props: ['post', 'isRagnarok'],
      data() {
          return {
              videoWidth: null,
@@ -90,6 +94,9 @@
          },
          posZ() {
              return this.post.position[1];
+         },
+         opacity() {
+             return this.isRagnarok ? 0.5 : 1.0;
          }
      }
  }

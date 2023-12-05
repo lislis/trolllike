@@ -82,7 +82,8 @@
         <a-entity position="0 0 0" id="all-posts">
             <APost  v-for="(post, i) in store.getPostsByCurrentFilter"
                     :key="post.id"
-                    :post="post">
+                    :post="post"
+                    :isRagnarok="isRagnarok">
             </APost>
         </a-entity>
 
