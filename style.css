@@ -338,3 +338,8 @@ html, body {
     opacity: 0;
   }
 }
+
+
+.a-enter-vr-button {
+  display: none !imporant;
+}
