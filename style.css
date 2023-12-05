@@ -77,8 +77,6 @@ html, body {
 .single-view .wp-block-gallery .wp-block-image {
   flex-basis: 50%;
   flex-shrink: 0;
-//  height: 100%;
-  //  background-color: aqua;
   text-align: center;
 }
 
@@ -113,7 +111,6 @@ html, body {
 .filter {
   position: absolute;
   z-index: 97;
-  //top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -124,7 +121,6 @@ html, body {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-end;
-  //transform: translateY(7em);
   transition: background-color 200ms ease, transform 200ms ease;
   height: 0;
 }
@@ -140,24 +136,20 @@ html, body {
   border: none;
   cursor: pointer;
   border: solid 3px black;
-  //transform: translateY(-8em);
 }
 
 
 .filter.is-open  {
   background-color: rgba(255, 255, 255, 0.5);
-  height: 30vh;
-//  transform: translateY(0);
+  height: 24vh;
 }
 
 .filter.is-open .filter-toggle {
   align-self: center;
- // transform: translateY(0);
 }
 
 
 .filter-inner {
-  //margin-top: 1em;
   overflow: scroll;
   scrollbar-color: black black;
   scrollbar-width: none;
