@@ -50,6 +50,7 @@ html, body {
   height: 100%;
   margin: auto;
   text-align: center;
+  object-fit: contain;
 }
 
 .single-view iframe,
