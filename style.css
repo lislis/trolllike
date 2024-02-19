@@ -18,7 +18,8 @@ html, body {
   font-family: sans-serif;
 }
 
-.single-view {
+.single-view,
+.single-page {
   position: absolute;
   z-index: 95;
   width: 88vw;
@@ -79,6 +80,27 @@ html, body {
   flex-basis: 50%;
   flex-shrink: 0;
   text-align: center;
+}
+
+.single-page .wp-block-image {
+  background: white;
+  width: auto;
+  display: inline-block;
+  padding: 1em;
+  border-radius: 8px;
+}
+
+.single-page .wp-block-image img {
+  max-width: 500px;
+  height: auto;
+}
+
+.wp-block-columns {
+  display: flex;
+}
+
+.are-vertically-aligned-center {
+  align-items: center;
 }
 
 @media (max-width: 800px) {
